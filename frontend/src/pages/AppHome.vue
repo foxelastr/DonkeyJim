@@ -31,7 +31,7 @@ const drawer = ref(null)
 </script>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import HelloWorld from '../components/HelloWorld.vue';
 export default {
   components: { HelloWorld },
   data: () => ({ drawer: null }),
