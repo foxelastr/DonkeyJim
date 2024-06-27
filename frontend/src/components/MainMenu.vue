@@ -1,11 +1,12 @@
+<!-- src/components/MainMenu.vue -->
 <template>
     <div>
         <v-navigation-drawer v-model="drawer" app clipped theme="dark">
             <v-list-item title="My Application" subtitle="Vuetify">Donkey-Jim</v-list-item>
             <v-divider></v-divider>
-            <v-list-item link title="Dashboard">Dashboard</v-list-item>
-            <v-list-item link title="Reservation">Reservation</v-list-item>
-            <v-list-item link title="Info">Info</v-list-item>
+            <v-list-item link :to="{ name: 'Dashboard' }" title="Dashboard">Dashboard</v-list-item>
+            <v-list-item link :to="{ name: 'Reservation' }" title="Reservation">Reservation</v-list-item>
+            <v-list-item link :to="{ name: 'Info' }" title="Info">Info</v-list-item>
         </v-navigation-drawer>
 
         <v-app-bar app clipped-left color="indigo" dark>
@@ -15,7 +16,7 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn text href="/">Home</v-btn>
+            <v-btn text :to="{ name: 'Home' }">Home</v-btn>
             <v-btn text href="/dashboard/item/list">Dashboard</v-btn>
             <v-btn text href="/admin/">Admin</v-btn>
             <v-btn text>/</v-btn>
@@ -54,8 +55,9 @@
 
 <script>
 export default {
-    data: () => ({ drawer: null }),
-
+    data: () => ({
+        drawer: null
+    }),
 }
 </script>
 
