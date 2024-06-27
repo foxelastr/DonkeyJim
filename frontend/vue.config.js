@@ -1,4 +1,4 @@
-const FileManagerPlugin = require('filemanager-webpack-plugin-fixed');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -7,12 +7,8 @@ module.exports = {
   ],
 
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-      staticOptions: {
-        index: 'home.html',
-      },
-    },
+    contentBase: path.join(__dirname, 'dist'),
+    index: 'home.html',
   },
 
   outputDir: 'dist',
