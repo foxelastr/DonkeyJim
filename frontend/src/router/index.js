@@ -1,9 +1,12 @@
+// src/router/index.js
 import Vue from 'vue';
 import Router from 'vue-router';
-import Home from '../components/HomePage.vue'
-import Dashboard from '../components/Dashboard.vue';
-import Reservation from '../components/Reservation.vue';
-import ReservationCheck from '../components/ReservationCheck.vue';
+import AppHome from '../pages/AppHome.vue';
+import HomePage from '../components/HomePage.vue';
+import DashboardPage from '../components/Dashboard.vue';
+import ReservationPage from '../components/Reservation.vue';
+import ReservationCheckPage from '../components/ReservationCheck.vue';
+import FaqPage from '../components/FaqPage.vue';
 
 Vue.use(Router);
 
@@ -12,23 +15,34 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
-      path: '/dashboard',
-      name: 'Dashboard',
-      component: Dashboard
-    },
-    {
-      path: '/reservation',
-      name: 'Reservation',
-      component: Reservation
-    },
-    {
-      path: '/reservation-check',
-      name: 'ReservationCheck',
-      component: ReservationCheck
+      component: AppHome,
+      children: [
+        {
+          path: '',
+          name: 'Home',
+          component: HomePage
+        },
+        {
+          path: 'dashboard',
+          name: 'Dashboard',
+          component: DashboardPage
+        },
+        {
+          path: 'reservation',
+          name: 'Reservation',
+          component: ReservationPage
+        },
+        {
+          path: 'reservation-check',
+          name: 'ReservationCheck',
+          component: ReservationCheckPage
+        },
+        {
+          path: 'faq',
+          name: 'Faq',
+          component: FaqPage
+        },
+      ]
     }
   ]
 });

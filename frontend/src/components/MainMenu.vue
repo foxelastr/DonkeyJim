@@ -1,14 +1,6 @@
 <!-- src/components/MainMenu.vue -->
 <template>
     <div>
-        <v-navigation-drawer v-model="drawer" app clipped theme="dark">
-            <v-list-item title="My Application" subtitle="Vuetify">Donkey-Jim</v-list-item>
-            <v-divider></v-divider>
-            <v-list-item link :to="{ name: 'Dashboard' }" title="Dashboard">Dashboard</v-list-item>
-            <v-list-item link :to="{ name: 'Reservation' }" title="Reservation">Reservation</v-list-item>
-            <v-list-item link :to="{ name: 'Info' }" title="Info">Info</v-list-item>
-        </v-navigation-drawer>
-
         <v-app-bar app clipped-left color="indigo" dark>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
@@ -20,8 +12,11 @@
             <v-btn text href="/dashboard/item/list">Dashboard</v-btn>
             <v-btn text href="/admin/">Admin</v-btn>
             <v-btn text>/</v-btn>
-            <v-btn text href="/dashboard.html">Dashboard</v-btn>
-            <v-btn text href="/item_list.html">Info</v-btn>
+            <v-btn text href="/">HOME</v-btn>
+            <v-btn text :to="{ name: 'Dashboard' }">서비스안내</v-btn>
+            <v-btn text :to="{ name: 'Reservation' }">예약하기</v-btn>
+            <v-btn text :to="{ name: 'ReservationCheck' }">예약확인</v-btn>
+            <v-btn text :to="{ name: 'Faq' }">FAQ</v-btn>
 
             <v-spacer></v-spacer>
 
@@ -55,9 +50,7 @@
 
 <script>
 export default {
-    data: () => ({
-        drawer: null
-    }),
+    data: () => ({}),
 }
 </script>
 

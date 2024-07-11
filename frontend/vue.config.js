@@ -1,6 +1,10 @@
 const FileManagerPlugin = require('filemanager-webpack-plugin');
 const path = require('path');
 
+console.log("Static Path:", path.resolve(__dirname, '../backend/static/*'));
+console.log("Templates Path:", path.resolve(__dirname, '../backend/templates/*'));
+
+
 module.exports = {
   transpileDependencies: [
     'vuetify'
@@ -8,7 +12,7 @@ module.exports = {
 
   devServer: {
     contentBase: path.join(__dirname, 'dist'),
-    index: 'home.html',
+    index: 'index.html',
   },
 
   outputDir: 'dist',
@@ -16,21 +20,13 @@ module.exports = {
   assetsDir: 'static',
 
   pages: {
-    home: {
+    index: {
       template: 'public/index.html',
       entry: 'src/pages/main_home.js',
-      filename: 'home.html',
-      title: 'Donkey-Jim_home',
+      filename: 'index.html',
+      title: 'Donkey-Jim',
       minify: false,
-    },
-
-    dashboard: {
-      template: 'public/index.html',
-      entry: 'src/pages/main_dashboard.js',
-      filename: 'dashboard.html',
-      title: 'Donkey-Jim_dashboard',
-      minify: false,
-    },
+    }
   },
 
   configureWebpack: {
@@ -39,16 +35,15 @@ module.exports = {
         events: {
           onStart: {
             delete: [
-              '../backend/static/**',
-              '../backend/templates/**',
+              path.resolve(__dirname, '../backend/static/**'),
+              path.resolve(__dirname, '../backend/templates/**'),
             ],
           },
           onEnd: {
             copy: [
-              { source: './dist/static', destination: '../backend/static/' },
-              { source: './dist/favicon.ico', destination: '../backend/static/img/' },
-              { source: './dist/home.html', destination: '../backend/templates/' },
-              { source: './dist/dashboard.html', destination: '../backend/templates/dashboard/' },
+              { source: path.resolve(__dirname, './dist/static'), destination: path.resolve(__dirname, '../backend/static/') },
+              { source: path.resolve(__dirname, './dist/favicon.ico'), destination: path.resolve(__dirname, '../backend/static/img/') },
+              { source: path.resolve(__dirname, './dist/index.html'), destination: path.resolve(__dirname, '../backend/templates/home.html') },
             ],
           },
         },
