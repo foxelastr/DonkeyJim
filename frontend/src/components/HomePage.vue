@@ -1,10 +1,30 @@
 <!-- src/components/HomePageContent.vue -->
 <template>
-  <v-container class="mt-10 pt-10">
-    <v-row>
+  <v-container class="">
+    <v-col class="">
+      <v-card class="mb-10 mx-auto" max-width="1590">
+        <v-img class="white--text align-end" height="200px" src="https://cdn.vuetifyjs.com/images/cards/docks.jpg">
+          <v-card-title>Top 10 Australian beaches</v-card-title>
+        </v-img>
+
+        <v-card-subtitle class="pb-0">
+          Number 10
+        </v-card-subtitle>
+
+        <v-card-text class="text--primary">
+          <div>Whitehaven Beach</div>
+
+          <div>Whitsunday Island, Whitsunday Islands</div>
+        </v-card-text>
+      </v-card>
+      <v-divider class="mx-auto" style="max-width: 1590px;"></v-divider>
+    </v-col>
+
+
+    <v-row class="pt-5">
       <v-col v-for="(card, index) in cards" :key="index" cols="12" md="4">
-        <v-card class="mx-auto" max-width="400">
-          <v-img :src="card.image" height="600px"></v-img>
+        <v-card class="mx-auto" max-width="400" @click="navigateTo(card.link)">
+          <v-img :src="card.image" height="500px"></v-img>
           <v-card-title>
             <router-link :to="card.link">{{ card.title }}</router-link>
           </v-card-title>
@@ -12,11 +32,11 @@
             {{ card.subtitle }}
           </v-card-subtitle>
           <v-card-actions>
-            <v-btn color="orange lighten-2" text>
+            <v-btn color="orange lighten-2" text @click.stop="navigateTo(card.link)">
               Explore
             </v-btn>
             <v-spacer></v-spacer>
-            <v-btn icon @click="toggle(index)">
+            <v-btn icon @click.stop="toggle(index)">
               <v-icon>{{ card.show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
             </v-btn>
           </v-card-actions>
@@ -69,7 +89,10 @@ export default {
   methods: {
     toggle(index) {
       this.cards[index].show = !this.cards[index].show;
-    }
+    },
+    navigateTo(link) {
+      this.$router.push(link);
+    },
   }
 }
 </script>
