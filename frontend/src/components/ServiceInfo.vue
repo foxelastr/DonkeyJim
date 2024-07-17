@@ -1,14 +1,14 @@
 <template>
   <v-container>
     <v-row align="center" justify="space-around">
-      <v-col cols="6" class="text-center right-border" @click="selectService('맡기기')">
+      <v-col cols="6" class="text-center right-border" @click="selectService('Keeping')">
         <div class="serviceType">
           <v-btn x-large text>
             맡기기
           </v-btn>
         </div>
       </v-col>
-      <v-col cols="6" class="text-center" @click="selectService('빌리기')">
+      <v-col cols="6" class="text-center" @click="selectService('Lending')">
         <div class="serviceType">
           <v-btn x-large text>
             빌리기
@@ -21,11 +21,11 @@
       <v-col v-for="(card, index) in selectedCards" :key="index" cols="12" sm="4">
         <v-card class="mx-auto" max-width="400" @click="openDialog(index + 1)">
           <v-img class="white--text align-end" height="200px" :src="card.image">
-            <v-card-title>{{ card.title }}</v-card-title>
+            <v-card-title>{{ card.name }}</v-card-title>
           </v-img>
 
           <v-card-subtitle class="pb-0">
-            {{ card.subtitle }}
+            {{ card.base_price }} / {{ card.additional_price }}
           </v-card-subtitle>
 
           <v-card-text class="text--primary">
@@ -66,64 +66,74 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
-  name: 'ServiceTypeButtons',
+  name: 'DashboardPage',
   data() {
     return {
       dialog: false,
       selectedCard: null,
-      currentService: '맡기기',
-      맡기기Cards: [
-        {
-          image: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
-          title: 'Top 10 Australian beaches',
-          subtitle: 'Number 1',
-          description: 'Whitehaven Beach, Whitsunday Island, Whitsunday Islands'
-        },
-        {
-          image: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
-          title: 'Top 10 Australian beaches',
-          subtitle: 'Number 2',
-          description: 'Whitehaven Beach, Whitsunday Island, Whitsunday Islands'
-        },
-        {
-          image: 'https://cdn.vuetifyjs.com/images/cards/docks.jpg',
-          title: 'Top 10 Australian beaches',
-          subtitle: 'Number 3',
-          description: 'Whitehaven Beach, Whitsunday Island, Whitsunday Islands'
-        },
-      ],
-      빌리기Cards: [
-        {
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          title: 'Top western road trips',
-          subtitle: '1,000 miles of wonder',
-          description: 'Experience the breathtaking road trips in the western region.'
-        },
-        {
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          title: 'Top western road trips',
-          subtitle: 'Number 2',
-          description: 'Experience the breathtaking road trips in the western region.'
-        },
-        {
-          image: 'https://cdn.vuetifyjs.com/images/cards/sunshine.jpg',
-          title: 'Top western road trips',
-          subtitle: 'Number 3',
-          description: 'Experience the breathtaking road trips in the western region.'
-        },
-      ]
+      currentService: 'Keeping',
+      KeepingCards: [],
+      LendingCards: [],
+      loading: true,
     };
   },
   computed: {
     selectedCards() {
-      return this.currentService === '맡기기' ? this.맡기기Cards : this.빌리기Cards;
+      return this.currentService === 'Keeping' ? this.KeepingCards : this.LendingCards;
     }
   },
+
+  created() {
+    this.fetchItemsList();
+  },
+
   methods: {
+    fetchItemsList() {
+      console.log("fetchItemsList()...");
+
+      axios.get('http://localhost:8000/api/dashboard/')
+        // axios.get('/api/dashboard/')
+        .then(res => {
+          console.log("POST GET RES", res);
+
+          // 데이터를 받아와서 KeepingCards와 LendingCards에 저장
+          this.KeepingCards = res.data.keeping_services.map(service => ({
+            image: '',  // 이미지 데이터가 없으므로 빈 문자열로 유지
+            name: service.name,
+            description: service.description,
+            base_price: service.base_price,
+            additional_price: service.additional_price
+          }));
+
+          this.LendingCards = res.data.lending_services.map(service => ({
+            image: '',  // 이미지 데이터가 없으므로 빈 문자열로 유지
+            name: service.name,
+            description: service.description,
+            base_price: service.base_price,
+            additional_price: service.additional_price
+          }));
+        })
+        .catch(err => {
+          if (err.response) {
+            console.log("POST GET ERR.RESPONSE", err.response);
+            alert(err.response.status + ' ' + err.response.statusText);
+          } else {
+            console.error("Error", err.message);
+            alert("Error: " + err.message);
+          }
+        })
+        .finally(() => {
+          this.loading = false;
+        });
+    },
+
     selectService(serviceType) {
       this.currentService = serviceType;
     },
+
     openDialog(cardNumber) {
       this.selectedCard = cardNumber;
       this.dialog = true;

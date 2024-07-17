@@ -9,7 +9,9 @@
             <v-spacer></v-spacer>
 
             <v-btn text :to="{ name: 'Home' }">Home</v-btn>
-            <v-btn text href="/dashboard/item/list">Dashboard</v-btn>
+            <v-btn text href="/dashboard/">서비스안내</v-btn>
+            <v-btn text href="/reservation">예약하기</v-btn>
+            <v-btn text href="/reservcheck">예약확인</v-btn>
             <v-btn text href="/admin/">Admin</v-btn>
             <v-btn text>/</v-btn>
             <v-btn text href="/">HOME</v-btn>

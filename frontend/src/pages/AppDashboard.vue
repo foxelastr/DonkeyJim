@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <MainMenu></MainMenu>
     <v-main class="custom-main">
-      <router-view></router-view>
+      <router-view></router-view> <!-- 라우터 뷰 추가 -->
     </v-main>
     <v-footer app>
       <span>&copy; 2024</span>

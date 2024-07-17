@@ -1,9 +1,11 @@
+from django.conf import settings
+from django.conf.urls.static import static
 from django.urls import path
-
-from dashboard import views
-
+from . import views
 
 app_name = 'dashboard'
 urlpatterns = [
-    path('item/list/', views.ItemLV.as_view(), name='item_list'),
+    path('', views.DashboardView.as_view(), name='dashboard'),
 ]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
