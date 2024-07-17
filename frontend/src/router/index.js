@@ -1,9 +1,8 @@
-// src/router/index.js
 import Vue from 'vue';
 import Router from 'vue-router';
-import AppHome from '../pages/AppHome.vue';
 import HomePage from '../components/HomePage.vue';
-import DashboardPage from '../components/Dashboard.vue';
+import AppDashboard from '../pages/AppDashboard.vue';
+import ServiceInfo from '../components/ServiceInfo.vue';
 import ReservationPage from '../components/Reservation.vue';
 import ReservationCheckPage from '../components/ReservationCheck.vue';
 import FaqPage from '../components/FaqPage.vue';
@@ -15,34 +14,34 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: AppHome,
+      name: 'Home',
+      component: HomePage,
+    },
+    {
+      path: '/dashboard',
+      component: AppDashboard,
       children: [
         {
-          path: '',
-          name: 'Home',
-          component: HomePage
-        },
-        {
-          path: 'dashboard',
-          name: 'Dashboard',
-          component: DashboardPage
+          path: 'serviceinfo',
+          name: 'ServiceInfo',
+          component: ServiceInfo,
         },
         {
           path: 'reservation',
           name: 'Reservation',
-          component: ReservationPage
+          component: ReservationPage,
         },
         {
           path: 'reservation-check',
           name: 'ReservationCheck',
-          component: ReservationCheckPage
+          component: ReservationCheckPage,
         },
         {
           path: 'faq',
           name: 'Faq',
-          component: FaqPage
+          component: FaqPage,
         },
-      ]
-    }
-  ]
+      ],
+    },
+  ],
 });
