@@ -34,11 +34,7 @@
 
           <v-card-actions>
             <v-btn color="orange" text>
-              Share
-            </v-btn>
-
-            <v-btn color="orange" text>
-              Explore
+              자세히보기 ==> 버튼을 넣지 말고 그냥 카드 자체가 버튼으로 하는게 낫나?
             </v-btn>
           </v-card-actions>
         </v-card>

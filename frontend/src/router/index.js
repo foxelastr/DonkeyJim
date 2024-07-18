@@ -32,7 +32,7 @@ export default new Router({
           component: ReservationPage,
         },
         {
-          path: 'reservation-check',
+          path: 'reservcheck',
           name: 'ReservationCheck',
           component: ReservationCheckPage,
         },
