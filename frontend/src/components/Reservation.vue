@@ -32,26 +32,11 @@
       <v-btn color="primary" @click="addService">추가</v-btn>
 
       <v-row>
-        <v-col cols="12" md="6">
-          <v-menu ref="reservationDateMenu" v-model="reservationDateMenu" :close-on-content-click="false"
-            :return-value.sync="reservationDate" transition="scale-transition" offset-y min-width="290px">
-            <template v-slot:activator="{ on, attrs }">
-              <v-text-field v-bind="attrs" v-on="on" :value="formattedReservationDate" label="예약 날짜"
-                prepend-icon="mdi-calendar" readonly></v-text-field>
-            </template>
-            <v-date-picker v-model="reservationDate" no-title scrollable
-              @change="updateReservationDate"></v-date-picker>
-          </v-menu>
+        <v-col cols="12" sm="6">
+          <v-date-picker v-model="dates" range></v-date-picker>
         </v-col>
-        <v-col cols="12" md="6">
-          <v-menu ref="expiryDateMenu" v-model="expiryDateMenu" :close-on-content-click="false"
-            :return-value.sync="expiryDate" transition="scale-transition" offset-y min-width="290px">
-            <template v-slot:activator="{ on, attrs }">
-              <v-text-field v-bind="attrs" v-on="on" :value="formattedExpiryDate" label="만료 날짜"
-                prepend-icon="mdi-calendar" readonly></v-text-field>
-            </template>
-            <v-date-picker v-model="expiryDate" no-title scrollable @change="updateExpiryDate"></v-date-picker>
-          </v-menu>
+        <v-col cols="12" sm="6">
+          <v-text-field v-model="dateRangeText" label="Date range" prepend-icon="mdi-calendar" readonly></v-text-field>
         </v-col>
       </v-row>
 
@@ -61,16 +46,15 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'ReservationPage',
   data() {
     return {
       name: '',
       phone: '',
-      reservationDate: null,
-      reservationDateMenu: false,
-      expiryDate: null,
-      expiryDateMenu: false,
+      dates: [],  // Date range array
       servicesList: [
         {
           selectedService: '',
@@ -84,11 +68,11 @@ export default {
     };
   },
   computed: {
-    formattedReservationDate() {
-      return this.reservationDate ? this.formatDate(this.reservationDate) : '';
-    },
-    formattedExpiryDate() {
-      return this.expiryDate ? this.formatDate(this.expiryDate) : '';
+    dateRangeText() {
+      if (this.dates.length === 2) {
+        return `${this.formatDate(this.dates[0])} - ${this.formatDate(this.dates[1])}`;
+      }
+      return '';
     },
   },
   methods: {
@@ -123,18 +107,30 @@ export default {
         subServices: [],
       });
     },
-    updateReservationDate(date) {
-      this.reservationDate = date;
-      this.reservationDateMenu = false;
-    },
-    updateExpiryDate(date) {
-      this.expiryDate = date;
-      this.expiryDateMenu = false;
-    },
     submitForm() {
       if (this.$refs.form.validate()) {
-        // Form submission logic
-        alert('예약이 완료되었습니다!');
+        const reservationData = {
+          name: this.name,
+          phone_number: this.phone,
+          keeping_service: this.servicesList.filter(service => service.selectedService === '맡기기').map(service => service.subServices.join(',')).join(','),
+          lending_service: this.servicesList.filter(service => service.selectedService === '빌리기').map(service => service.subServices.join(',')).join(','),
+          start_date: this.dates.length > 0 ? this.formatDate(this.dates[0]) : null,
+          end_date: this.dates.length > 1 ? this.formatDate(this.dates[1]) : null,
+          total_price: 0,  // 가격 계산 로직 추가 필요
+          terms_agreed: true,  // 약관 동의 여부
+        };
+
+        // 폼 데이터 콘솔에 출력
+        console.log('Reservation Data:', reservationData);
+
+        axios.post('http://localhost:8000/api/reservation/', reservationData)
+          .then(response => {
+            alert('예약이 완료되었습니다!');
+            console.log('API Response:', response);
+          })
+          .catch(error => {
+            console.error('예약 중 오류가 발생했습니다:', error);
+          });
       }
     },
   },
