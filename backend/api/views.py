@@ -1,5 +1,9 @@
 from django.views.generic.list import BaseListView
 from django.http import JsonResponse
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .serializers import UsersSerializer
 from dashboard.models import KeepingService, LendingService
 from django.http import Http404
 from django.utils.translation import gettext as _
@@ -35,3 +39,11 @@ class ApiItemsLV(BaseListView):
         
         
         return JsonResponse(data=items, safe=False, status=200)
+
+class CreateReservationView(APIView):
+    def post(self, request, format=None):
+        serializer = UsersSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
