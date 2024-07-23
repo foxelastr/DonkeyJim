@@ -26,7 +26,7 @@
           <template #item="{ item }">
             <tr>
               <td>{{ item.name }}</td>
-              <td>{{ item.phone }}</td>
+              <td>{{ item.phone_number }}</td>
               <td>{{ item.service }}</td>
               <td>
                 <v-chip-group>
@@ -35,8 +35,8 @@
                   </v-chip>
                 </v-chip-group>
               </td>
-              <td>{{ item.reservationDate }}</td>
-              <td>{{ item.expiryDate }}</td>
+              <td>{{ item.start_date }}</td>
+              <td>{{ item.end_date }}</td>
             </tr>
           </template>
         </v-data-table>
@@ -46,6 +46,8 @@
 </template>
 
 <script>
+import axios from 'axios'; // axios import
+
 export default {
   name: 'ReservationCheckPage',
   data() {
@@ -55,44 +57,38 @@ export default {
       showReservationList: false,
       headers: [
         { text: '이름', value: 'name' },
-        { text: '전화번호', value: 'phone' },
+        { text: '전화번호', value: 'phone_number' },
         { text: '서비스 항목', value: 'service' },
         { text: '세부 서비스 항목', value: 'subServices' },
-        { text: '예약 날짜', value: 'reservationDate' },
-        { text: '만료 날짜', value: 'expiryDate' },
+        { text: '예약 날짜', value: 'start_date' },
+        { text: '만료 날짜', value: 'end_date' },
       ],
-      reservations: [
-        {
-          name: '홍길동',
-          phone: '010-1234-5678',
-          service: '맡기기',
-          subServices: ['a', 'b'],
-          reservationDate: '2024-07-10',
-          expiryDate: '2024-07-20',
-        },
-        {
-          name: '김철수',
-          phone: '010-8765-4321',
-          service: '빌리기',
-          subServices: ['x', 'y'],
-          reservationDate: '2024-07-11',
-          expiryDate: '2024-07-21',
-        },
-        // 더 많은 예약 항목 추가 가능
-      ],
+      reservations: [],
     };
   },
   computed: {
     filteredReservations() {
       return this.reservations.filter(
-        reservation => reservation.name === this.name && reservation.phone === this.phone
+        reservation => reservation.name === this.name && reservation.phone_number === this.phone
       );
     },
   },
   methods: {
-    checkReservation() {
+    async checkReservation() {
       if (this.name && this.phone) {
-        this.showReservationList = true;
+        try {
+          const response = await axios.get('http://localhost:8000/api/reservcheck/', {
+            params: {
+              name: this.name,
+              phone_number: this.phone,
+            },
+          });
+          this.reservations = response.data; // 서버에서 받은 데이터로 reservations 업데이트
+          this.showReservationList = true;
+        } catch (error) {
+          console.error(error);
+          alert('예약 정보를 불러오지 못했습니다.');
+        }
       } else {
         this.$refs.form.validate();
       }
