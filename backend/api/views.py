@@ -1,10 +1,11 @@
+from django.views import View
 from django.views.generic.list import BaseListView
 from django.http import JsonResponse
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import UsersSerializer
-from dashboard.models import KeepingService, LendingService
+from dashboard.models import KeepingService, LendingService, Users
 from django.http import Http404
 from django.utils.translation import gettext as _
 
@@ -47,3 +48,29 @@ class CreateReservationView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+class ReservationCheckAPIView(View):
+    print("in the API reservation check class...")
+    def get(self, request):
+        print("API reservation check recieved...")
+        name = request.GET.get('name')
+        phone_number = request.GET.get('phone_number')
+
+        if not name or not phone_number:
+            return JsonResponse({'error': 'Name and phone number are required.'}, status=400)
+
+        try:
+            user = Users.objects.get(name=name, phone_number=phone_number)
+            response_data = {
+                'name': user.name,
+                'phone_number': user.phone_number,
+                'keeping_service': user.keeping_service,
+                'lending_service': user.lending_service,
+                'start_date': user.start_date,
+                'end_date': user.end_date,
+                'total_price': user.total_price,
+                'terms_agreed': user.terms_agreed,
+            }
+            return JsonResponse(response_data)
+        except Users.DoesNotExist:
+            return JsonResponse({'error': 'User not found.'}, status=404)
