@@ -23,16 +23,21 @@ class LendingService(models.Model):
 class Users(models.Model):
     name = models.CharField(max_length=100)
     phone_number = models.CharField(max_length=15)
-    keeping_service = models.CharField(max_length=100, null=True, blank=True)
-    lending_service = models.CharField(max_length=100, null=True, blank=True)
+    keeping_services = models.JSONField(default=list)
+    keeping_quantities = models.JSONField(default=list)
+    lending_services = models.JSONField(default=list)
+    lending_quantities = models.JSONField(default=list)
     start_date = models.DateField()
     end_date = models.DateField()
+    start_time = models.TimeField(default="00:00:00")
+    end_time = models.TimeField(default="00:00:00")  # 기본값 설정
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     terms_agreed = models.BooleanField(default=False)
-    
+
     class Meta:
         verbose_name = 'User'
         verbose_name_plural = 'Users'
-    
+
     def __str__(self):
         return self.name
+

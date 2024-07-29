@@ -16,7 +16,7 @@
     <v-card v-if="showReservationList" class="mt-5">
       <v-card-title>예약 목록</v-card-title>
       <v-card-text>
-        <v-data-table :headers="headers" :items="filteredReservations" class="elevation-1">
+        <v-data-table :headers="headers" :items="[reservation]" class="elevation-1">
           <template #top>
             <v-toolbar flat>
               <v-toolbar-title>Reservation List</v-toolbar-title>
@@ -27,16 +27,23 @@
             <tr>
               <td>{{ item.name }}</td>
               <td>{{ item.phone_number }}</td>
-              <td>{{ item.service }}</td>
               <td>
                 <v-chip-group>
-                  <v-chip v-for="(subService, index) in item.subServices" :key="index" small>
+                  <v-chip v-for="(subService, index) in item.keeping_services" :key="index" small>
+                    {{ subService }}
+                  </v-chip>
+                </v-chip-group>
+              </td>
+              <td>
+                <v-chip-group>
+                  <v-chip v-for="(subService, index) in item.lending_services" :key="index" small>
                     {{ subService }}
                   </v-chip>
                 </v-chip-group>
               </td>
               <td>{{ item.start_date }}</td>
               <td>{{ item.end_date }}</td>
+              <td>{{ item.total_price }}</td>
             </tr>
           </template>
         </v-data-table>
@@ -46,7 +53,7 @@
 </template>
 
 <script>
-import axios from 'axios'; // axios import
+import axios from 'axios';
 
 export default {
   name: 'ReservationCheckPage',
@@ -58,20 +65,14 @@ export default {
       headers: [
         { text: '이름', value: 'name' },
         { text: '전화번호', value: 'phone_number' },
-        { text: '서비스 항목', value: 'service' },
-        { text: '세부 서비스 항목', value: 'subServices' },
+        { text: '맡긴 서비스', value: 'keeping_services' },
+        { text: '빌린 서비스', value: 'lending_services' },
         { text: '예약 날짜', value: 'start_date' },
         { text: '만료 날짜', value: 'end_date' },
+        { text: '총 가격', value: 'total_price' },
       ],
-      reservations: [],
+      reservation: null,
     };
-  },
-  computed: {
-    filteredReservations() {
-      return this.reservations.filter(
-        reservation => reservation.name === this.name && reservation.phone_number === this.phone
-      );
-    },
   },
   methods: {
     async checkReservation() {
@@ -83,7 +84,7 @@ export default {
               phone_number: this.phone,
             },
           });
-          this.reservations = response.data; // 서버에서 받은 데이터로 reservations 업데이트
+          this.reservation = response.data; // 서버에서 받은 데이터로 reservation 업데이트
           this.showReservationList = true;
         } catch (error) {
           console.error(error);
