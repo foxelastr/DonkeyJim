@@ -10,37 +10,78 @@
         </v-col>
       </v-row>
 
-      <v-row v-for="(service, index) in servicesList" :key="index" class="mb-3">
-        <v-col cols="12">
-          <v-select v-model="service.selectedService" :items="services" label="서비스 항목" @change="clearSubServices(index)"
-            required></v-select>
-        </v-col>
-        <v-col cols="12">
-          <v-select v-model="service.selectedSubService" :items="getSubServiceItems(service.selectedService)"
-            label="세부 서비스 항목" @change="addSubService(index)"></v-select>
-        </v-col>
-        <v-col cols="12" v-if="service.subServices.length">
-          <div>
-            <v-chip v-for="(subService, subIndex) in service.subServices" :key="subIndex" class="ma-2" close
-              @click:close="removeSubService(index, subIndex)">
-              {{ subService }}
-            </v-chip>
-          </div>
-        </v-col>
-      </v-row>
+      <v-card flat>
+        <v-container fluid>
+          <v-row class="child-flex">
+            <v-col cols="6">
+              <v-toolbar>
+                <v-spacer></v-spacer>
+                <v-toolbar-title>맡기기</v-toolbar-title>
+                <v-spacer></v-spacer>
+              </v-toolbar>
+              <v-row v-for="(item, index) in depositServices" :key="item.id">
+                <v-col cols="8">
+                  <v-checkbox :label="item.name" v-model="depositSelected[index]"></v-checkbox>
+                </v-col>
+                <v-col cols="4" v-if="depositSelected[index]">
+                  <v-text-field v-model="depositQuantities[index]" label="수량" type="number" min="0"></v-text-field>
+                </v-col>
+              </v-row>
+            </v-col>
 
-      <v-btn color="primary" @click="addService">추가</v-btn>
+            <v-col cols="6">
+              <v-toolbar dark>
+                <v-spacer></v-spacer>
+                <v-toolbar-title>빌리기</v-toolbar-title>
+                <v-spacer></v-spacer>
+              </v-toolbar>
+              <v-row v-for="(item, index) in rentServices" :key="item.id">
+                <v-col cols="8">
+                  <v-checkbox :label="item.name" v-model="rentSelected[index]"></v-checkbox>
+                </v-col>
+                <v-col cols="4" v-if="rentSelected[index]">
+                  <v-text-field v-model="rentQuantities[index]" label="수량" type="number" min="0"></v-text-field>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+        </v-container>
+      </v-card>
 
       <v-row>
-        <v-col cols="12" sm="6">
+        <v-col cols="12" md="6">
           <v-date-picker v-model="dates" range></v-date-picker>
-        </v-col>
-        <v-col cols="12" sm="6">
           <v-text-field v-model="dateRangeText" label="Date range" prepend-icon="mdi-calendar" readonly></v-text-field>
+        </v-col>
+        <v-col cols="12" md="6">
+          <v-select v-model="selectedStartTime" :items="timeOptions" label="출발 시각" required></v-select>
+          <v-select v-model="selectedEndTime" :items="timeOptions" label="도착 시각" required></v-select>
         </v-col>
       </v-row>
 
-      <v-btn color="primary" @click="submitForm">예약하기</v-btn>
+      <v-row>
+        <v-col cols="12">
+          <v-checkbox v-model="termsAgreed" label="약관 동의"></v-checkbox>
+          <v-btn text @click="showTerms = true">약관 보기</v-btn>
+        </v-col>
+      </v-row>
+
+      <v-btn color="primary" @click="submitForm" :disabled="!isFormValid">예약하기</v-btn>
+
+      <v-dialog v-model="showTerms" max-width="600px">
+        <v-card>
+          <v-card-title class="headline">약관</v-card-title>
+          <v-card-text>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat.
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="primary" text @click="showTerms = false">닫기</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-dialog>
     </v-form>
   </v-container>
 </template>
@@ -55,16 +96,21 @@ export default {
       name: '',
       phone: '',
       dates: [],  // Date range array
-      servicesList: [
-        {
-          selectedService: '',
-          selectedSubService: '',
-          subServices: [],
-        },
+      depositServices: [],
+      rentServices: [],
+      depositSelected: [],  // "맡기기" 서비스 항목의 선택 상태를 저장
+      rentSelected: [],  // "빌리기" 서비스 항목의 선택 상태를 저장
+      depositQuantities: [],  // "맡기기" 서비스 항목의 수량을 저장
+      rentQuantities: [],  // "빌리기" 서비스 항목의 수량을 저장
+      selectedStartTime: '',
+      selectedEndTime: '',
+      termsAgreed: false,
+      showTerms: false,
+      timeOptions: [
+        '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
+        '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00',
+        '20:00', '21:00', '22:00'
       ],
-      services: ['맡기기', '빌리기'],
-      depositServices: ['a', 'b', 'c'],
-      rentServices: ['x', 'y', 'z'],
     };
   },
   computed: {
@@ -74,6 +120,35 @@ export default {
       }
       return '';
     },
+    isFormValid() {
+      return (
+        this.name &&
+        this.phone &&
+        this.dates.length === 2 &&
+        this.selectedStartTime &&
+        this.selectedEndTime &&
+        this.termsAgreed
+      );
+    },
+  },
+  created() {
+    axios.get('http://localhost:8000/api/items/')
+      .then(response => {
+        this.depositServices = response.data.keeping_services;
+        this.rentServices = response.data.lending_services;
+        // Initialize selected objects with false values
+        this.depositServices.forEach((service, index) => {
+          this.$set(this.depositSelected, index, false);
+          this.$set(this.depositQuantities, index, 0);
+        });
+        this.rentServices.forEach((service, index) => {
+          this.$set(this.rentSelected, index, false);
+          this.$set(this.rentQuantities, index, 0);
+        });
+      })
+      .catch(error => {
+        console.error('Error fetching services:', error);
+      });
   },
   methods: {
     formatDate(date) {
@@ -81,43 +156,37 @@ export default {
       const [year, month, day] = date.split('-');
       return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     },
-    getSubServiceItems(service) {
-      return service === '맡기기' ? this.depositServices : this.rentServices;
-    },
-    clearSubServices(index) {
-      this.servicesList[index].subServices = [];
-    },
-    addSubService(index) {
-      const service = this.servicesList[index];
-      if (
-        service.selectedSubService &&
-        !service.subServices.includes(service.selectedSubService)
-      ) {
-        service.subServices.push(service.selectedSubService);
-        service.selectedSubService = null;
-      }
-    },
-    removeSubService(serviceIndex, subIndex) {
-      this.servicesList[serviceIndex].subServices.splice(subIndex, 1);
-    },
-    addService() {
-      this.servicesList.push({
-        selectedService: '',
-        selectedSubService: '',
-        subServices: [],
-      });
-    },
     submitForm() {
       if (this.$refs.form.validate()) {
+        const keepingServices = this.depositServices
+          .filter((service, index) => this.depositSelected[index])
+          .map(service => service.name);
+
+        const keepingQuantities = this.depositServices
+          .filter((service, index) => this.depositSelected[index])
+          .map((service, index) => this.depositQuantities[index]);
+
+        const lendingServices = this.rentServices
+          .filter((service, index) => this.rentSelected[index])
+          .map(service => service.name);
+
+        const lendingQuantities = this.rentServices
+          .filter((service, index) => this.rentSelected[index])
+          .map((service, index) => this.rentQuantities[index]);
+
         const reservationData = {
           name: this.name,
           phone_number: this.phone,
-          keeping_service: this.servicesList.filter(service => service.selectedService === '맡기기').map(service => service.subServices.join(',')).join(','),
-          lending_service: this.servicesList.filter(service => service.selectedService === '빌리기').map(service => service.subServices.join(',')).join(','),
+          keeping_services: keepingServices,
+          keeping_quantities: keepingQuantities,
+          lending_services: lendingServices,
+          lending_quantities: lendingQuantities,
           start_date: this.dates.length > 0 ? this.formatDate(this.dates[0]) : null,
           end_date: this.dates.length > 1 ? this.formatDate(this.dates[1]) : null,
+          start_time: this.selectedStartTime,
+          end_time: this.selectedEndTime,
           total_price: 0,  // 가격 계산 로직 추가 필요
-          terms_agreed: true,  // 약관 동의 여부
+          terms_agreed: this.termsAgreed,  // 약관 동의 여부
         };
 
         // 폼 데이터 콘솔에 출력

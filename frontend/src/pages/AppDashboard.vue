@@ -3,18 +3,17 @@
     <MainMenu></MainMenu>
     <v-main class="custom-main">
       <router-view></router-view> <!-- 라우터 뷰 추가 -->
+      <ContactIcon />
     </v-main>
-    <v-footer app>
-      <span>&copy; 2024</span>
-    </v-footer>
   </v-app>
 </template>
 
 <script>
 import MainMenu from "../components/MainMenu.vue";
+import ContactIcon from '../components/ContactIcon.vue';
 
 export default {
-  components: { MainMenu }
+  components: { MainMenu, ContactIcon }
 };
 </script>
 

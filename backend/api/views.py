@@ -40,6 +40,17 @@ class ApiItemsLV(BaseListView):
         
         
         return JsonResponse(data=items, safe=False, status=200)
+    
+class ServiceListView(View):
+    def get(self, request, *args, **kwargs):
+        keeping_services = list(KeepingService.objects.values('name', 'description', 'base_price', 'additional_price'))
+        lending_services = list(LendingService.objects.values('name', 'description', 'base_price', 'additional_price'))
+
+        data = {
+            'keeping_services': keeping_services,
+            'lending_services': lending_services,
+        }
+        return JsonResponse(data)
 
 class CreateReservationView(APIView):
     def post(self, request, format=None):
@@ -50,9 +61,7 @@ class CreateReservationView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class ReservationCheckAPIView(View):
-    print("in the API reservation check class...")
     def get(self, request):
-        print("API reservation check recieved...")
         name = request.GET.get('name')
         phone_number = request.GET.get('phone_number')
 
@@ -64,12 +73,15 @@ class ReservationCheckAPIView(View):
             response_data = {
                 'name': user.name,
                 'phone_number': user.phone_number,
-                'keeping_service': user.keeping_service,
-                'lending_service': user.lending_service,
+                'keeping_services': user.keeping_services,
+                'keeping_quantities': user.keeping_quantities,
+                'lending_services': user.lending_services,
+                'lending_quantities': user.lending_quantities,
                 'start_date': user.start_date,
                 'end_date': user.end_date,
+                'start_time': user.start_time,
+                'end_time': user.end_time,
                 'total_price': user.total_price,
-                'terms_agreed': user.terms_agreed,
             }
             return JsonResponse(response_data)
         except Users.DoesNotExist:

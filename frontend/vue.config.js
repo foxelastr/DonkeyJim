@@ -18,11 +18,11 @@ module.exports = {
     static: {
       directory: path.join(__dirname, 'dist'),
     },
-    historyApiFallback: true,
+    historyApiFallback: true, // 기본 설정으로 변경
   },
 
   outputDir: 'dist',
-  publicPath: '/',
+  publicPath: '',
   assetsDir: 'static',
 
   pages: {
@@ -69,4 +69,3 @@ module.exports = {
     ],
   },
 };
-
