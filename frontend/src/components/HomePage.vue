@@ -28,15 +28,6 @@
           <v-card-subtitle>
             {{ card.subtitle }}
           </v-card-subtitle>
-          <v-card-actions>
-            <v-btn color="orange lighten-2" text @click.stop="navigateTo(card.link)">
-              Explore
-            </v-btn>
-            <v-spacer></v-spacer>
-            <v-btn icon @click.stop="toggle(index)">
-              <v-icon>{{ card.show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
-            </v-btn>
-          </v-card-actions>
           <v-expand-transition>
             <div v-show="card.show">
               <v-divider></v-divider>
@@ -84,9 +75,6 @@ export default {
     };
   },
   methods: {
-    toggle(index) {
-      this.cards[index].show = !this.cards[index].show;
-    },
     navigateTo(link) {
       this.$router.push(link);
     },
