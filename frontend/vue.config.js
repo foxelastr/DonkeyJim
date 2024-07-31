@@ -16,13 +16,13 @@ module.exports = {
       }
     },
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, 'dist/static'),
     },
-    historyApiFallback: true, // 기본 설정으로 변경
+    historyApiFallback: false,
   },
 
   outputDir: 'dist',
-  publicPath: '',
+  publicPath: '/',
   assetsDir: 'static',
 
   pages: {

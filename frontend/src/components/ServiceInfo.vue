@@ -1,6 +1,21 @@
 <template>
   <v-container>
     <v-row align="center" justify="space-around">
+      <v-col cols="12">
+        <v-carousel v-model="model">
+          <v-carousel-item v-for="(color, i) in colors" :key="color">
+            <v-sheet :color="color" height="100%" tile>
+              <v-row class="fill-height" align="center" justify="center">
+                <div class="text-h2">
+                  Slide {{ i + 1 }}
+                </div>
+              </v-row>
+            </v-sheet>
+          </v-carousel-item>
+        </v-carousel>
+      </v-col>
+    </v-row>
+    <v-row align="center" justify="space-around">
       <v-col cols="6" class="text-center right-border" @click="selectService('Keeping')">
         <div class="serviceType">
           <v-btn x-large text>
@@ -32,11 +47,6 @@
             <div>{{ card.description }}</div>
           </v-card-text>
 
-          <v-card-actions>
-            <v-btn color="orange" text>
-              자세히보기 ==> 버튼을 넣지 말고 그냥 카드 자체가 버튼으로 하는게 낫나?
-            </v-btn>
-          </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
@@ -74,6 +84,14 @@ export default {
       KeepingCards: [],
       LendingCards: [],
       loading: true,
+      model: 0,
+      colors: [
+        'primary',
+        'secondary',
+        'yellow darken-2',
+        'red',
+        'orange',
+      ],
     };
   },
   computed: {
