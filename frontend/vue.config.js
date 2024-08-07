@@ -16,9 +16,9 @@ module.exports = {
       }
     },
     static: {
-      directory: path.join(__dirname, 'dist/static'),
+      directory: path.join(__dirname, 'public'),
     },
-    historyApiFallback: false,
+    historyApiFallback: true,
   },
 
   outputDir: 'dist',

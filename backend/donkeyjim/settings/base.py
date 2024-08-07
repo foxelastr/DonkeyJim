@@ -17,7 +17,27 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # ALLOWED_HOSTS = []
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8081",  # Vue 개발 서버 주소
+    "http://127.0.0.1:8081",  # Django 서버 주소
+    "http://localhost:8000",  # Vue 개발 서버 주소
+    "http://127.0.0.1:8000",  # Django 서버 주소
+]
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8081",  # Vue 개발 서버 주소
+    "http://127.0.0.1:8081",  # Django 서버 주소
+    "http://localhost:8000",  # Vue 개발 서버 주소
+    "http://127.0.0.1:8000",  # Django 서버 주소
+]
+
+# CORS 헤더를 Vue 개발 서버에서 허용
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_HEADERS = [
+    'content-type',
+    'x-csrftoken',
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -47,10 +67,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:8081",
-    "http://127.0.0.1:8000",
-]
+CSRF_COOKIE_NAME = 'csrftoken'
+CSRF_HEADER_NAME = 'HTTP_X_CSRFTOKEN'
+
+CSRF_COOKIE_SECURE = False
+SESSION_COOKIE_SECURE = False
 
 ROOT_URLCONF = 'donkeyjim.urls'
 

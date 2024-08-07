@@ -33,6 +33,7 @@ class Users(models.Model):
     end_time = models.TimeField(default="00:00:00")  # 기본값 설정
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     terms_agreed = models.BooleanField(default=False)
+    payment_method = models.CharField(max_length=15, default='')
 
     class Meta:
         verbose_name = 'User'
