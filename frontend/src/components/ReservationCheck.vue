@@ -44,6 +44,9 @@
               <td>{{ item.start_date }}</td>
               <td>{{ item.end_date }}</td>
               <td>{{ item.total_price }}</td>
+              <td>
+                <v-btn color="primary" @click="updateReservation(item)">예약 변경</v-btn>
+              </td>
             </tr>
           </template>
         </v-data-table>
@@ -75,24 +78,33 @@ export default {
     };
   },
   methods: {
-    async checkReservation() {
+    checkReservation() {
       if (this.name && this.phone) {
-        try {
-          const response = await axios.get('http://localhost:8000/api/reservcheck/', {
-            params: {
-              name: this.name,
-              phone_number: this.phone,
-            },
+        axios.get('http://localhost:8000/api/reservcheck/', {
+          params: {
+            name: this.name,
+            phone_number: this.phone,
+          },
+        })
+          .then(response => {
+            this.reservation = response.data; // 서버에서 받은 데이터로 reservation 업데이트
+            this.showReservationList = true;
+          })
+          .catch(error => {
+            console.error(error);
+            alert('예약 정보를 불러오지 못했습니다.');
           });
-          this.reservation = response.data; // 서버에서 받은 데이터로 reservation 업데이트
-          this.showReservationList = true;
-        } catch (error) {
-          console.error(error);
-          alert('예약 정보를 불러오지 못했습니다.');
-        }
       } else {
         this.$refs.form.validate();
       }
+    },
+    updateReservation(item) {
+      this.$router.push({
+        name: 'ReservationUpdate',
+        params: {
+          user_id: item.id,
+        },
+      });
     },
   },
 };
