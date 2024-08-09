@@ -34,6 +34,8 @@ class Users(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     terms_agreed = models.BooleanField(default=False)
     payment_method = models.CharField(max_length=15, default='')
+    initial_verification = models.BooleanField(default=False, verbose_name="1차 확인")
+    final_verification = models.BooleanField(default=False, verbose_name="최종 확인")
 
     class Meta:
         verbose_name = 'User'

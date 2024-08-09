@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.shortcuts import get_object_or_404
 from django.views import View
 from django.views.generic.list import BaseListView
@@ -7,6 +8,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import UsersSerializer
 from dashboard.models import KeepingService, LendingService, Users
+from auths.models import Managers
 from django.http import Http404
 import json
 from django.utils.translation import gettext as _
@@ -73,25 +75,66 @@ class ReservationCheckAPIView(View):
         if not name or not phone_number:
             return JsonResponse({'error': 'Name and phone number are required.'}, status=400)
 
-        try:
-            user = Users.objects.get(name=name, phone_number=phone_number)
-            response_data = {
-                'id': user.id,
-                'name': user.name,
-                'phone_number': user.phone_number,
-                'keeping_services': user.keeping_services,
-                'keeping_quantities': user.keeping_quantities,
-                'lending_services': user.lending_services,
-                'lending_quantities': user.lending_quantities,
-                'start_date': user.start_date,
-                'end_date': user.end_date,
-                'start_time': user.start_time,
-                'end_time': user.end_time,
-                'total_price': user.total_price,
-            }
-            return JsonResponse(response_data)
-        except Users.DoesNotExist:
-            return JsonResponse({'error': 'User not found.'}, status=404)
+        # Manager에 있는 사용자 확인
+        manager_exists = Managers.objects.filter(user__username=name, phone_number=phone_number).exists()
+
+        if manager_exists:
+            print("Manager table record exists!!!\n")
+            today = timezone.localtime().date()
+            
+            # start_date가 오늘인 예약들
+            reservations_start = Users.objects.filter(start_date=today)
+            # end_date가 오늘인 예약들
+            reservations_end = Users.objects.filter(end_date=today)
+            
+            # 두 QuerySet을 합치고 중복 제거
+            reservations = (reservations_start | reservations_end).distinct()
+            
+            print("Reservations is : ", reservations)
+
+            # 예약 데이터가 있는 경우 JSON 응답으로 반환
+            if reservations.exists():
+                response_data = []
+                for user in reservations:
+                    response_data.append({
+                        'id': user.id,
+                        'name': user.name,
+                        'phone_number': user.phone_number,
+                        'keeping_services': user.keeping_services,
+                        'keeping_quantities': user.keeping_quantities,
+                        'lending_services': user.lending_services,
+                        'lending_quantities': user.lending_quantities,
+                        'start_date': user.start_date,
+                        'end_date': user.end_date,
+                        'start_time': user.start_time,
+                        'end_time': user.end_time,
+                        'total_price': user.total_price,
+                    })
+                return JsonResponse(response_data, safe=False)
+            else:
+                return JsonResponse({'error': 'No reservations found for today.'}, status=404)
+        
+        # Manager에 없으면 기존 로직 수행
+        else:
+            try:
+                user = Users.objects.get(name=name, phone_number=phone_number)
+                response_data = {
+                    'id': user.id,
+                    'name': user.name,
+                    'phone_number': user.phone_number,
+                    'keeping_services': user.keeping_services,
+                    'keeping_quantities': user.keeping_quantities,
+                    'lending_services': user.lending_services,
+                    'lending_quantities': user.lending_quantities,
+                    'start_date': user.start_date,
+                    'end_date': user.end_date,
+                    'start_time': user.start_time,
+                    'end_time': user.end_time,
+                    'total_price': user.total_price,
+                }
+                return JsonResponse(response_data)
+            except Users.DoesNotExist:
+                return JsonResponse({'error': 'User not found.'}, status=404)
 
 class ReservationUpdateAPIView(View):
     def get(self, request, id):
