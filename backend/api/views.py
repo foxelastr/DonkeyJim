@@ -79,7 +79,6 @@ class ReservationCheckAPIView(View):
         manager_exists = Managers.objects.filter(user__username=name, phone_number=phone_number).exists()
 
         if manager_exists:
-            print("Manager table record exists!!!\n")
             today = timezone.localtime().date()
             
             # start_date가 오늘인 예약들
@@ -90,8 +89,6 @@ class ReservationCheckAPIView(View):
             # 두 QuerySet을 합치고 중복 제거
             reservations = (reservations_start | reservations_end).distinct()
             
-            print("Reservations is : ", reservations)
-
             # 예약 데이터가 있는 경우 JSON 응답으로 반환
             if reservations.exists():
                 response_data = []
