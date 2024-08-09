@@ -6,7 +6,8 @@
           <v-text-field v-model="name" label="이름" required></v-text-field>
         </v-col>
         <v-col cols="12" md="6">
-          <v-text-field v-model="phone" label="전화번호" required></v-text-field>
+          <v-text-field v-model="phone" label="핸드폰번호 : 숫자만 입력하세요" type="number" @keypress="isNumber"
+            required></v-text-field>
         </v-col>
       </v-row>
 
@@ -164,7 +165,7 @@ export default {
     isFormValid() {
       return (
         this.name &&
-        this.phone &&
+        this.isValidPhoneNumber(this.phone) &&  // 핸드폰 번호 유효성 검사
         this.dates.length === 2 &&
         this.selectedStartTime &&
         this.selectedEndTime &&
@@ -246,6 +247,16 @@ export default {
       const [year, month, day] = date.split('-');
       return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
     },
+    isValidPhoneNumber(phone) {
+      const phoneRegex = /^\d{11}$/;
+      return phoneRegex.test(phone);
+    },
+    isNumber(evt) {
+      const charCode = evt.which ? evt.which : evt.keyCode;
+      if (charCode < 48 || charCode > 57) {
+        evt.preventDefault();
+      }
+    },
     updateTotalPrice() {
       const baseDays = 3;
       let totalPrice = 0;
@@ -271,6 +282,11 @@ export default {
     },
     async submitForm() {
       if (this.$refs.form.validate()) {
+        if (!this.isValidPhoneNumber(this.phone)) {
+          alert('핸드폰 번호를 확인해주세요. - 를 제외한 숫자로만 ');
+          return;
+        }
+
         const keepingQuantities = this.depositQuantities.filter((quantity, index) => this.depositSelected[index])
 
         const keepingServices = this.depositServices
