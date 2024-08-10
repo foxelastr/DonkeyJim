@@ -11,10 +11,13 @@
         </v-col>
       </v-row>
 
+      <v-divider class="my-4"></v-divider> <!-- 첫 번째 구분선 -->
+
       <v-card flat>
         <v-container fluid>
           <v-row class="child-flex">
-            <v-col cols="6">
+            <!-- 맡기기 섹션 -->
+            <v-col cols="12" md="6">
               <v-toolbar>
                 <v-spacer></v-spacer>
                 <v-toolbar-title>맡기기</v-toolbar-title>
@@ -22,8 +25,9 @@
               </v-toolbar>
               <v-row v-for="(item, index) in depositServices" :key="item.name + '-counter'">
                 <v-col cols="8">
-                  <v-checkbox :label="item.name" v-model="depositSelected[index]"
-                    @change="handleDepositChange(index)"></v-checkbox>
+                  <v-checkbox
+                    :label="`${item.name} - 기본 : ${item.base_price.toLocaleString()}원 / 추가 : ${item.additional_price.toLocaleString()}원`"
+                    v-model="depositSelected[index]" @change="handleDepositChange(index)"></v-checkbox>
                 </v-col>
                 <v-col cols="4" v-if="depositSelected[index]">
                   <v-text-field v-model.number="depositQuantities[index]" label="수량" type="number" min="0"
@@ -41,7 +45,8 @@
               </v-row>
             </v-col>
 
-            <v-col cols="6">
+            <!-- 빌리기 섹션 -->
+            <v-col cols="12" md="6">
               <v-toolbar dark>
                 <v-spacer></v-spacer>
                 <v-toolbar-title>빌리기</v-toolbar-title>
@@ -49,8 +54,9 @@
               </v-toolbar>
               <v-row v-for="(item, index) in rentServices" :key="item.name + '-counter'">
                 <v-col cols="8">
-                  <v-checkbox :label="item.name" v-model="rentSelected[index]"
-                    @change="handleRentChange(index)"></v-checkbox>
+                  <v-checkbox
+                    :label="`${item.name} - 기본 : ${item.base_price.toLocaleString()}원 / 추가 : ${item.additional_price.toLocaleString()}원`"
+                    v-model="rentSelected[index]" @change="handleRentChange(index)"></v-checkbox>
                 </v-col>
                 <v-col cols="4" v-if="rentSelected[index]">
                   <v-text-field v-model.number="rentQuantities[index]" label="수량" type="number" min="0"
@@ -71,42 +77,58 @@
         </v-container>
       </v-card>
 
+
+      <v-divider class="my-4"></v-divider> <!-- 두 번째 구분선 -->
+
       <v-row>
-        <v-col cols="12" md="6">
+        <v-col cols="12" md="6" class="d-flex justify-center align-center">
           <v-date-picker v-model="dates" range @change="sortDates"></v-date-picker>
-          <v-text-field v-model="dateRangeText" label="Date range" prepend-icon="mdi-calendar" readonly></v-text-field>
         </v-col>
-        <v-col cols="12" md="6">
-          <v-select v-model="selectedStartTime" :items="timeOptions" label="출발 시각" required></v-select>
-          <v-select v-model="selectedEndTime" :items="timeOptions" label="도착 시각" required></v-select>
+        <v-col cols="12" md="6" class="d-flex justify-center align-center flex-column">
+          <v-col cols="12" md="6" style="flex: 2;">
+            <v-text-field v-model="dateRangeText" label="Date range" prepend-icon="mdi-calendar"
+              readonly></v-text-field>
+          </v-col>
+          <v-col cols="12" md="6" style="flex: 1;">
+            <v-select v-model="selectedStartTime" :items="timeOptions" label="출발 시각" required></v-select>
+          </v-col>
+          <v-col cols="12" md="6" style="flex: 1;">
+            <v-select v-model="selectedEndTime" :items="timeOptions" label="도착 시각" required></v-select>
+          </v-col>
         </v-col>
       </v-row>
 
+      <v-divider class="my-4"></v-divider> <!-- 세 번째 구분선 -->
+
       <!-- 결제 방법 선택 추가 -->
       <v-row>
-        <v-col cols="12">
+        <v-col cols="12" md="6">
           <v-btn-toggle v-model="selectedPaymentMethod" mandatory>
             <v-btn :value="'계좌이체'" color="primary">계좌이체</v-btn>
             <v-btn :value="'현장결제(카드)'" color="primary">현장결제(카드)</v-btn>
             <v-btn :value="'현장결제(현금)'" color="primary">현장결제(현금)</v-btn>
           </v-btn-toggle>
         </v-col>
-      </v-row>
-
-      <v-row>
-        <v-col cols="12">
+        <v-col cols="12" md="6" class="d-flex justify-start">
           <v-checkbox v-model="termsAgreed" label="약관 동의"></v-checkbox>
-          <v-btn text @click="showTerms = true">약관 보기</v-btn>
+          <div class="d-flex align-center" style="height: 100%;">
+            <v-btn text @click="showTerms = true">약관 보기</v-btn>
+          </div>
         </v-col>
       </v-row>
+
+      <v-divider class="my-4"></v-divider> <!-- 다섯 번째 구분선 -->
 
       <v-row>
         <v-col cols="12">
-          <v-alert type="info">총 가격: {{ totalPrice }}원</v-alert>
+          <v-alert type="info">
+            총 가격: {{ totalPrice.toLocaleString() }}원
+            (맡기기: {{ depositTotal.toLocaleString() }}원 / 빌리기: {{ rentTotal.toLocaleString() }}원)
+          </v-alert>
         </v-col>
       </v-row>
 
-      <v-btn color="primary" @click="submitForm" :disabled="!isFormValid">예약하기</v-btn>
+      <v-btn color="primary" @click="submitForm">예약하기</v-btn>
 
       <v-dialog v-model="showTerms" max-width="600px">
         <v-card>
@@ -147,6 +169,8 @@ export default {
       termsAgreed: false,
       showTerms: false,
       totalPrice: 0,
+      depositTotal: 0,
+      rentTotal: 0,
       selectedPaymentMethod: '',  // 결제 방법
       timeOptions: [
         '06:00', '07:00', '08:00', '09:00', '10:00', '11:00', '12:00',
@@ -161,18 +185,7 @@ export default {
         return `${this.formatDate(this.dates[0])} - ${this.formatDate(this.dates[1])}`;
       }
       return '';
-    },
-    isFormValid() {
-      return (
-        this.name &&
-        this.isValidPhoneNumber(this.phone) &&  // 핸드폰 번호 유효성 검사
-        this.dates.length === 2 &&
-        this.selectedStartTime &&
-        this.selectedEndTime &&
-        this.termsAgreed &&
-        this.selectedPaymentMethod  // 결제 방법이 선택되었는지 확인
-      );
-    },
+    }
   },
   watch: {
     dates: 'updateTotalPrice',
@@ -259,82 +272,109 @@ export default {
     },
     updateTotalPrice() {
       const baseDays = 3;
-      let totalPrice = 0;
+      let depositTotal = 0;
+      let rentTotal = 0;
       const totalDays = this.dates.length > 1 ? (new Date(this.dates[1]) - new Date(this.dates[0])) / (1000 * 60 * 60 * 24) + 1 : 1;
 
-      // Calculate for keeping services
+      // Calculate for keeping services (맡기기)
       this.depositServices.forEach((service, index) => {
         if (this.depositSelected[index]) {
           const additionalDays = Math.max(0, totalDays - baseDays);
-          totalPrice += (service.base_price + (additionalDays * service.additional_price)) * this.depositQuantities[index];
+          depositTotal += (service.base_price + (additionalDays * service.additional_price)) * this.depositQuantities[index];
         }
       });
 
-      // Calculate for lending services
+      // Calculate for lending services (빌리기)
       this.rentServices.forEach((service, index) => {
         if (this.rentSelected[index]) {
           const additionalDays = Math.max(0, totalDays - baseDays);
-          totalPrice += (service.base_price + (additionalDays * service.additional_price)) * this.rentQuantities[index];
+          rentTotal += (service.base_price + (additionalDays * service.additional_price)) * this.rentQuantities[index];
         }
       });
 
-      this.totalPrice = totalPrice;
+      // Update totals
+      this.depositTotal = depositTotal;
+      this.rentTotal = rentTotal;
+      this.totalPrice = depositTotal + rentTotal;
     },
     async submitForm() {
-      if (this.$refs.form.validate()) {
-        if (!this.isValidPhoneNumber(this.phone)) {
-          alert('핸드폰 번호를 확인해주세요. - 를 제외한 숫자로만 ');
-          return;
-        }
-
-        const keepingQuantities = this.depositQuantities.filter((quantity, index) => this.depositSelected[index])
-
-        const keepingServices = this.depositServices
-          .filter((service, index) => this.depositSelected[index])
-          .map((service, index) => ({
-            name: service.name,
-            quantity: keepingQuantities[index],
-          }));
-        console.log("keeping services printed : ", keepingServices)
-
-        const lendingQuantities = this.rentQuantities.filter((quantity, index) => this.rentSelected[index])
-
-        const lendingServices = this.rentServices
-          .filter((service, index) => this.rentSelected[index])
-          .map((service, index) => ({
-            name: service.name,
-            quantity: lendingQuantities[index],
-          }));
-        console.log("lending services printed : ", lendingServices)
-
-        const reservationData = {
-          name: this.name,
-          phone_number: this.phone,
-          keeping_services: keepingServices.map(s => s.name),
-          keeping_quantities: keepingServices.map(s => s.quantity),
-          lending_services: lendingServices.map(s => s.name),
-          lending_quantities: lendingServices.map(s => s.quantity),
-          start_date: this.dates.length > 0 ? this.formatDate(this.dates[0]) : null,
-          end_date: this.dates.length > 1 ? this.formatDate(this.dates[1]) : null,
-          start_time: this.selectedStartTime,
-          end_time: this.selectedEndTime,
-          total_price: this.totalPrice,
-          terms_agreed: this.termsAgreed,  // 약관 동의 여부
-          payment_method: this.selectedPaymentMethod,  // 결제 방법
-        };
-
-        // 폼 데이터 콘솔에 출력
-        console.log('Reservation Data:', reservationData);
-
-        axios.post('http://localhost:8000/api/reservation/', reservationData)
-          .then(response => {
-            alert('예약이 완료되었습니다!');
-            console.log('API Response:', response);
-          })
-          .catch(error => {
-            console.error('예약 중 오류가 발생했습니다:', error);
-          });
+      // 각 조건을 검증하고, 조건에 맞지 않으면 경고창 표시
+      if (!this.name) {
+        alert('이름을 입력하세요.');
+        return;
       }
+      if (!this.isValidPhoneNumber(this.phone)) {
+        alert('핸드폰 번호를 확인해주세요. - 를 제외한 11자리 숫자로만 입력해야 합니다.\n010XXXXYYYY 형식으로 입력해주세요');
+        return;
+      }
+      if (this.dates.length !== 2) {
+        alert('예약 날짜를 선택해주세요.');
+        return;
+      }
+      if (!this.selectedStartTime) {
+        alert('출발 시각을 선택해주세요.');
+        return;
+      }
+      if (!this.selectedEndTime) {
+        alert('도착 시각을 선택해주세요.');
+        return;
+      }
+      if (!this.termsAgreed) {
+        alert('약관에 동의해주세요.');
+        return;
+      }
+      if (!this.selectedPaymentMethod) {
+        alert('결제 방법을 선택해주세요.');
+        return;
+      }
+
+      const keepingQuantities = this.depositQuantities.filter((quantity, index) => this.depositSelected[index]);
+
+      const keepingServices = this.depositServices
+        .filter((service, index) => this.depositSelected[index])
+        .map((service, index) => ({
+          name: service.name,
+          quantity: keepingQuantities[index],
+        }));
+      console.log("keeping services printed : ", keepingServices);
+
+      const lendingQuantities = this.rentQuantities.filter((quantity, index) => this.rentSelected[index]);
+
+      const lendingServices = this.rentServices
+        .filter((service, index) => this.rentSelected[index])
+        .map((service, index) => ({
+          name: service.name,
+          quantity: lendingQuantities[index],
+        }));
+      console.log("lending services printed : ", lendingServices);
+
+      const reservationData = {
+        name: this.name,
+        phone_number: this.phone,
+        keeping_services: keepingServices.map(s => s.name),
+        keeping_quantities: keepingServices.map(s => s.quantity),
+        lending_services: lendingServices.map(s => s.name),
+        lending_quantities: lendingServices.map(s => s.quantity),
+        start_date: this.dates.length > 0 ? this.formatDate(this.dates[0]) : null,
+        end_date: this.dates.length > 1 ? this.formatDate(this.dates[1]) : null,
+        start_time: this.selectedStartTime,
+        end_time: this.selectedEndTime,
+        total_price: this.totalPrice,
+        terms_agreed: this.termsAgreed,  // 약관 동의 여부
+        payment_method: this.selectedPaymentMethod,  // 결제 방법
+      };
+
+      // 폼 데이터 콘솔에 출력
+      console.log('Reservation Data:', reservationData);
+
+      axios.post('http://localhost:8000/api/reservation/', reservationData)
+        .then(response => {
+          alert('예약이 완료되었습니다!');
+          console.log('API Response:', response);
+        })
+        .catch(error => {
+          console.error('예약 중 오류가 발생했습니다:', error);
+        });
     },
   },
 };
@@ -345,5 +385,13 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.mb-4 {
+  margin-bottom: 32px;
+}
+
+.mb-2 {
+  margin-bottom: 16px;
 }
 </style>
