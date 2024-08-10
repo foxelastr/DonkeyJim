@@ -88,11 +88,19 @@ export default {
             },
           });
 
+          console.log(("response data is : ", response.data))
+
+          let responseData = response.data;
+
+          if (!Array.isArray(responseData)) {
+            responseData = [responseData];
+          }
+
           if (response.data.length === 0) {
             alert('예약 내역이 없습니다.');
             this.showReservationList = false;
           } else {
-            this.reservations = response.data;
+            this.reservations = responseData;
             this.showReservationList = true;
           }
         } catch (error) {
@@ -104,10 +112,25 @@ export default {
       }
     },
     updateReservation(item) {
+      const selectedItem = Array.isArray(item) ? item[0] : item;
+
+      if (!selectedItem) {
+        console.error('Reservation item is undefined or empty');
+        return;
+      }
+
       this.$router.push({
         name: 'ReservationUpdate',
-        params: {
-          user_id: item.id,
+        query: {
+          name: item.name,
+          phone_number: item.phone_number,
+          start_time: item.start_time,
+          end_time: item.end_time,
+          payment_method: item.payment_method,
+          keeping_services: JSON.stringify(item.keeping_services),
+          keeping_quantities: JSON.stringify(item.keeping_quantities),
+          lending_services: JSON.stringify(item.lending_services),
+          lending_quantities: JSON.stringify(item.lending_quantities),
         },
       });
     },
