@@ -21,7 +21,7 @@ class LendingService(models.Model):
         return self.name
 
 class Users(models.Model):
-    name = models.CharField(max_length=100)
+    name = models.CharField(max_length=100, default='')
     phone_number = models.CharField(max_length=15)
     keeping_services = models.JSONField(default=list)
     keeping_quantities = models.JSONField(default=list)
@@ -34,6 +34,7 @@ class Users(models.Model):
     total_price = models.DecimalField(max_digits=10, decimal_places=2)
     terms_agreed = models.BooleanField(default=False)
     payment_method = models.CharField(max_length=15, default='')
+    change_status = models.BooleanField(default=False, verbose_name="변경여부")
     initial_verification = models.BooleanField(default=False, verbose_name="1차 확인")
     final_verification = models.BooleanField(default=False, verbose_name="최종 확인")
 

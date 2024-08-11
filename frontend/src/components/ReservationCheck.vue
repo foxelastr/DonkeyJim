@@ -44,8 +44,27 @@
               <td>{{ item.start_date }}</td>
               <td>{{ item.end_date }}</td>
               <td>{{ formatPrice(item.total_price) }}</td>
-              <td>
+              <td v-if="isManager">
+                <v-chip :color="item.change_status ? 'blue' : ''">
+                  {{ item.change_status ? 'Changed' : '' }}
+                </v-chip>
+              </td>
+              <td v-if="isManager">
+                <v-chip :color="item.initial_verification ? 'yellow' : ''">
+                  {{ item.initial_verification ? 'Initial Check' : '' }}
+                </v-chip>
+              </td>
+              <td v-if="isManager">
+                <v-chip :color="item.final_verification ? 'red' : ''">
+                  {{ item.final_verification ? 'Final Check' : '' }}
+                </v-chip>
+              </td>
+              <td v-if="!isManager">
                 <v-btn color="primary" @click="updateReservation(item)">예약 변경</v-btn>
+              </td>
+              <td v-if="isManager">
+                <v-btn color="primary" @click="performAction1(item)">Action 1</v-btn>
+                <v-btn color="secondary" @click="performAction2(item)">Action 2</v-btn>
               </td>
             </tr>
           </template>
@@ -65,6 +84,7 @@ export default {
       name: '',
       phone: '',
       showReservationList: false,
+      isManager: false, // 추가
       headers: [
         { text: '이름', value: 'name' },
         { text: '전화번호', value: 'phone_number' },
@@ -73,6 +93,9 @@ export default {
         { text: '예약 날짜', value: 'start_date' },
         { text: '만료 날짜', value: 'end_date' },
         { text: '총 가격', value: 'total_price' },
+        { text: '변경 상태', value: 'change_status', align: 'center', sortable: false }, // 추가
+        { text: '초기 확인', value: 'initial_verification', align: 'center', sortable: false }, // 추가
+        { text: '최종 확인', value: 'final_verification', align: 'center', sortable: false }, // 추가
       ],
       reservations: [],
     };
@@ -101,6 +124,7 @@ export default {
             this.showReservationList = false;
           } else {
             this.reservations = responseData;
+            this.isManager = responseData.some(reservation => 'change_status' in reservation);
             this.showReservationList = true;
           }
         } catch (error) {
@@ -111,28 +135,28 @@ export default {
         this.$refs.form.validate();
       }
     },
-    updateReservation(item) {
-      const selectedItem = Array.isArray(item) ? item[0] : item;
-
-      if (!selectedItem) {
-        console.error('Reservation item is undefined or empty');
-        return;
+    async performAction1(item) {
+      try {
+        const response = await axios.post(`http://localhost:8000/api/update-initial-verification/${item.id}/`);
+        console.log('Action 1 response:', response.data);
+        this.$set(item, 'initial_verification', true); // 업데이트 후 상태 반영
+        alert('Initial verification updated successfully.');
+      } catch (error) {
+        console.error('Error updating initial verification:', error);
+        alert('Failed to update initial verification.');
       }
+    },
 
-      this.$router.push({
-        name: 'ReservationUpdate',
-        query: {
-          name: item.name,
-          phone_number: item.phone_number,
-          start_time: item.start_time,
-          end_time: item.end_time,
-          payment_method: item.payment_method,
-          keeping_services: JSON.stringify(item.keeping_services),
-          keeping_quantities: JSON.stringify(item.keeping_quantities),
-          lending_services: JSON.stringify(item.lending_services),
-          lending_quantities: JSON.stringify(item.lending_quantities),
-        },
-      });
+    async performAction2(item) {
+      try {
+        const response = await axios.post(`http://localhost:8000/api/update-final-verification/${item.id}/`);
+        console.log('Action 2 response:', response.data);
+        this.$set(item, 'final_verification', true); // 업데이트 후 상태 반영
+        alert('Final verification updated successfully.');
+      } catch (error) {
+        console.error('Error updating final verification:', error);
+        alert('Failed to update final verification.');
+      }
     },
     formatPrice(value) {
       if (!value) return '';
