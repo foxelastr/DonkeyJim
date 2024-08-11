@@ -60,12 +60,26 @@ class ServiceListView(View):
 class CreateReservationView(APIView):
     def post(self, request, format=None):
         print(request.data)
-        serializer = UsersSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        print(serializer.errors)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        # 동일한 이름과 전화번호를 가진 기존 예약이 있는지 확인
+        existing_user = Users.objects.filter(name=request.data.get('name'), phone_number=request.data.get('phone_number')).exists()
+
+        if existing_user:
+            # 새로운 예약을 생성할 때 change_status를 True로 설정
+            serializer = UsersSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save(change_status=True)
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            print(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        else:
+            # 새로운 예약을 생성하는 경우 (change_status는 기본값 False)
+            serializer = UsersSerializer(data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            print(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class ReservationCheckAPIView(View):
     def get(self, request):
@@ -106,6 +120,10 @@ class ReservationCheckAPIView(View):
                         'start_time': user.start_time,
                         'end_time': user.end_time,
                         'total_price': user.total_price,
+                        'payment_method': user.payment_method,
+                        'change_status': user.change_status,
+                        'initial_verification': user.initial_verification,
+                        'final_verification': user.final_verification,
                     })
                 return JsonResponse(response_data, safe=False)
             else:
@@ -128,49 +146,28 @@ class ReservationCheckAPIView(View):
                     'start_time': user.start_time,
                     'end_time': user.end_time,
                     'total_price': user.total_price,
+                    'payment_method': user.payment_method,
                 }
                 return JsonResponse(response_data)
             except Users.DoesNotExist:
                 return JsonResponse({'error': 'User not found.'}, status=404)
 
-class ReservationUpdateAPIView(View):
-    def get(self, request, id):
-        user = get_object_or_404(Users, id=id)
-        response_data = {
-            'id': user.id,
-            'name': user.name,
-            'phone_number': user.phone_number,
-            'keeping_services': user.keeping_services,
-            'keeping_quantities': user.keeping_quantities,
-            'lending_services': user.lending_services,
-            'lending_quantities': user.lending_quantities,
-            'start_date': user.start_date,
-            'end_date': user.end_date,
-            'start_time': user.start_time,
-            'end_time': user.end_time,
-            'total_price': user.total_price,
-        }
-        return JsonResponse(response_data)
+class UpdateInitialVerificationView(APIView):
+    def post(self, request, user_id):
+        try:
+            user = Users.objects.get(id=user_id)
+            user.initial_verification = True
+            user.save()
+            return Response({'message': 'Initial verification updated successfully.'}, status=status.HTTP_200_OK)
+        except Users.DoesNotExist:
+            return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-    def put(self, request, id):
-        data = json.loads(request.body)
-        user = get_object_or_404(Users, id=id)
-
-        user.keeping_services = data.get('keeping_services', user.keeping_services)
-        user.keeping_quantities = data.get('keeping_quantities', user.keeping_quantities)
-        user.lending_services = data.get('lending_services', user.lending_services)
-        user.lending_quantities = data.get('lending_quantities', user.lending_quantities)
-        user.start_date = data.get('start_date', user.start_date)
-        user.end_date = data.get('end_date', user.end_date)
-        user.start_time = data.get('start_time', user.start_time)
-        user.end_time = data.get('end_time', user.end_time)
-        user.total_price = data.get('total_price', user.total_price)
-
-        user.save()
-
-        return JsonResponse({'message': 'Reservation updated successfully'})
-    
-def get_csrf_token(request):
-    token = get_token(request)
-    print("TOKEN is : ", token)
-    return JsonResponse({'csrfToken': token})
+class UpdateFinalVerificationView(APIView):
+    def post(self, request, user_id):
+        try:
+            user = Users.objects.get(id=user_id)
+            user.final_verification = True
+            user.save()
+            return Response({'message': 'Final verification updated successfully.'}, status=status.HTTP_200_OK)
+        except Users.DoesNotExist:
+            return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)

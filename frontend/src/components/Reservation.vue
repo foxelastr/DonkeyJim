@@ -371,6 +371,7 @@ export default {
         .then(response => {
           alert('예약이 완료되었습니다!');
           console.log('API Response:', response);
+          this.$router.push({ name: 'ServiceInfo' });
         })
         .catch(error => {
           console.error('예약 중 오류가 발생했습니다:', error);

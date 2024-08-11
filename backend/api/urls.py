@@ -7,6 +7,6 @@ urlpatterns = [
     path('reservation/', views.CreateReservationView.as_view(), name='reservation'),
     path('items/', views.ServiceListView.as_view(), name='get_services'),
     path('reservcheck/', views.ReservationCheckAPIView.as_view(), name='reservcheck'),
-    path('update/<int:id>/', views.ReservationUpdateAPIView.as_view(), name='reservation_update'),
-    path('csrf_token/', views.get_csrf_token, name='csrf_token'),
-]
+    path('update-initial-verification/<int:user_id>/', views.UpdateInitialVerificationView.as_view(), name='update_initial_verification'),
+    path('update-final-verification/<int:user_id>/', views.UpdateFinalVerificationView.as_view(), name='update_final_verification'),
+    ]

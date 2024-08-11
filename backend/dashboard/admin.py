@@ -15,7 +15,7 @@ class UsersAdmin(admin.ModelAdmin):
     list_display = [
         'name', 'phone_number', 'get_keeping_services', 'get_keeping_quantities',
         'get_lending_services', 'get_lending_quantities', 'start_date', 'end_date',
-        'start_time', 'end_time', 'formatted_total_price', 'payment_method', 'terms_agreed', 'initial_verification_display', 'final_verification_display',
+        'start_time', 'end_time', 'formatted_total_price', 'payment_method', 'terms_agreed', 'change_status_display', 'initial_verification_display', 'final_verification_display',
     ]
 
     def get_keeping_services(self, obj):
@@ -36,19 +36,27 @@ class UsersAdmin(admin.ModelAdmin):
             return mark_safe(formatted_price)
         return "-"
     
+    def change_status_display(self, obj):
+        if obj.change_status:
+            return format_html('<span style="color: #80DEEA;">Changed</span>')
+        return ""
+    
     def initial_verification_display(self, obj):
-        color = '#F50057' if obj.initial_verification else 'black'
-        return format_html('<span style="color: {};">{}</span>', color, 'Check' if obj.initial_verification else '')
+        if obj.initial_verification:
+            return format_html('<span style="color: #FFF176;">Check</span>')
+        return ""
 
     def final_verification_display(self, obj):
-        color = '#F50057' if obj.final_verification else 'black'
-        return format_html('<span style="color: {};">{}</span>', color, 'Check' if obj.final_verification else '')
+        if obj.final_verification:
+            return format_html('<span style="color: #F50057;">Check</span>')
+        return ""
 
     get_keeping_services.short_description = 'Keeping Services'
     get_keeping_quantities.short_description = 'Keeping Quantities'
     get_lending_services.short_description = 'Lending Services'
     get_lending_quantities.short_description = 'Lending Quantities'
     formatted_total_price.short_description = 'Total Price'
+    change_status_display.short_description = 'Change Status'
     initial_verification_display.short_description = 'Initial Verification'
     final_verification_display.short_description = 'Final Verification'
 
