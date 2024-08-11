@@ -162,12 +162,3 @@ class UpdateInitialVerificationView(APIView):
         except Users.DoesNotExist:
             return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
 
-class UpdateFinalVerificationView(APIView):
-    def post(self, request, user_id):
-        try:
-            user = Users.objects.get(id=user_id)
-            user.final_verification = True
-            user.save()
-            return Response({'message': 'Final verification updated successfully.'}, status=status.HTTP_200_OK)
-        except Users.DoesNotExist:
-            return Response({'error': 'User not found.'}, status=status.HTTP_404_NOT_FOUND)
