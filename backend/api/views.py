@@ -15,13 +15,10 @@ from django.utils.translation import gettext as _
 from django.middleware.csrf import get_token
 
 class ApiItemsLV(BaseListView):
-    print("API_ITEMS_LV beginning 1\n")
-    
     def get_queryset(self):
         return []
 
     def get(self, request, *args, **kwargs):
-        print("API_ITEMS_LV beginning 2\n")
         self.object_list = self.get_queryset()
         allow_empty = self.get_allow_empty()
 
@@ -36,8 +33,6 @@ class ApiItemsLV(BaseListView):
                 }
             )
             
-        print("rendering items...\n")
-
         items = {
             'keeping_services': keeping_services,
             'lending_services': lending_services,
@@ -59,7 +54,6 @@ class ServiceListView(View):
 
 class CreateReservationView(APIView):
     def post(self, request, format=None):
-        print(request.data)
 
         # 동일한 이름과 전화번호를 가진 기존 예약이 있는지 확인
         existing_user = Users.objects.filter(name=request.data.get('name'), phone_number=request.data.get('phone_number')).exists()
@@ -70,7 +64,6 @@ class CreateReservationView(APIView):
             if serializer.is_valid():
                 serializer.save(change_status=True)
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-            print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             # 새로운 예약을 생성하는 경우 (change_status는 기본값 False)
@@ -78,7 +71,6 @@ class CreateReservationView(APIView):
             if serializer.is_valid():
                 serializer.save()
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
-            print(serializer.errors)
             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
 class ReservationCheckAPIView(View):
@@ -91,51 +83,30 @@ class ReservationCheckAPIView(View):
 
         # Manager에 있는 사용자 확인
         manager_exists = Managers.objects.filter(user__username=name, phone_number=phone_number).exists()
+        
+        print("manager_exists is : ", manager_exists)
 
         if manager_exists:
             today = timezone.localtime().date()
             
-            # start_date가 오늘인 예약들
+            # 매니저의 경우 오늘 날짜로 필터링
             reservations_start = Users.objects.filter(start_date=today)
-            # end_date가 오늘인 예약들
             reservations_end = Users.objects.filter(end_date=today)
             
             # 두 QuerySet을 합치고 중복 제거
             reservations = (reservations_start | reservations_end).distinct()
             
-            # 예약 데이터가 있는 경우 JSON 응답으로 반환
-            if reservations.exists():
-                response_data = []
-                for user in reservations:
-                    response_data.append({
-                        'id': user.id,
-                        'name': user.name,
-                        'phone_number': user.phone_number,
-                        'keeping_services': user.keeping_services,
-                        'keeping_quantities': user.keeping_quantities,
-                        'lending_services': user.lending_services,
-                        'lending_quantities': user.lending_quantities,
-                        'start_date': user.start_date,
-                        'end_date': user.end_date,
-                        'start_time': user.start_time,
-                        'end_time': user.end_time,
-                        'total_price': user.total_price,
-                        'payment_method': user.payment_method,
-                        'change_status': user.change_status,
-                        'initial_verification': user.initial_verification,
-                        'final_verification': user.final_verification,
-                    })
-                return JsonResponse(response_data, safe=False)
-            else:
-                return JsonResponse({'error': 'No reservations found for today.'}, status=404)
-        
-        # Manager에 없으면 기존 로직 수행
         else:
-            try:
-                user = Users.objects.get(name=name, phone_number=phone_number)
-                response_data = {
+            # 매니저가 아닌 사용자는 모든 예약 내역 반환
+            reservations = Users.objects.filter(name=name, phone_number=phone_number)
+
+        if reservations.exists():
+            response_data = []
+            for user in reservations:
+                response_data.append({
                     'id': user.id,
                     'name': user.name,
+                    'is_manager': manager_exists,
                     'phone_number': user.phone_number,
                     'keeping_services': user.keeping_services,
                     'keeping_quantities': user.keeping_quantities,
@@ -147,10 +118,16 @@ class ReservationCheckAPIView(View):
                     'end_time': user.end_time,
                     'total_price': user.total_price,
                     'payment_method': user.payment_method,
-                }
-                return JsonResponse(response_data)
-            except Users.DoesNotExist:
-                return JsonResponse({'error': 'User not found.'}, status=404)
+                    'change_status': user.change_status,
+                    'initial_verification': user.initial_verification,
+                    'final_verification': user.final_verification,
+                })
+            return JsonResponse({
+                    'is_manager': manager_exists,
+                    'response_data': response_data
+                })
+        else:
+            return JsonResponse({'error': 'No reservations found.'}, status=404)
 
 class UpdateInitialVerificationView(APIView):
     def post(self, request, user_id):

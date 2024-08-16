@@ -18,7 +18,7 @@
           <v-row class="child-flex">
             <!-- 맡기기 섹션 -->
             <v-col cols="12" md="6">
-              <v-toolbar>
+              <v-toolbar dark>
                 <v-spacer></v-spacer>
                 <v-toolbar-title>맡기기</v-toolbar-title>
                 <v-spacer></v-spacer>
@@ -298,6 +298,23 @@ export default {
       this.totalPrice = depositTotal + rentTotal;
     },
     async submitForm() {
+      const now = new Date();
+      const selectedDate = new Date(this.dates[0]); // 출발 날짜
+
+      if (selectedDate.toDateString() === now.toDateString()) {
+        // 출발 시간이 현재 시각에서 2시간 이내인지 확인
+        const selectedTime = this.selectedStartTime.split(':');
+        const reservationTime = new Date(selectedDate.setHours(parseInt(selectedTime[0]), parseInt(selectedTime[1])));
+
+        const timeDifference = reservationTime - now;
+        const twoHoursInMilliseconds = 3 * 60 * 60 * 1000;
+
+        if (timeDifference < twoHoursInMilliseconds) {
+          alert('출발시각 3시간 이내에는 예약이 불가능합니다.');
+          return;
+        }
+      }
+
       // 각 조건을 검증하고, 조건에 맞지 않으면 경고창 표시
       if (!this.name) {
         alert('이름을 입력하세요.');

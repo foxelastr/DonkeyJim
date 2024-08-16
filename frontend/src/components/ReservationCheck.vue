@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <h1>예약 확인 페이지</h1>
+    <h1>예약 확인</h1>
 
     <v-card class="mb-5">
       <v-card-title>예약 확인</v-card-title>
@@ -16,27 +16,27 @@
     <v-card v-if="showReservationList" class="mt-5">
       <v-card-title>예약 목록</v-card-title>
       <v-card-text>
-        <v-data-table :headers="headers" :items="reservations" class="elevation-1">
+        <v-data-table :headers="tableHeaders" :items="reservations" class="elevation-1">
           <template #top>
             <v-toolbar flat>
               <v-toolbar-title>Reservation List</v-toolbar-title>
               <v-divider class="mx-4" inset vertical></v-divider>
             </v-toolbar>
           </template>
-          <template #item="{ item }">
+          <template #item="{ item, index }">
             <tr>
               <td>{{ item.name }}</td>
               <td>{{ item.phone_number }}</td>
               <td>
                 <v-chip-group>
-                  <v-chip v-for="(subService, index) in item.keeping_services" :key="index" small>
+                  <v-chip v-for="(subService, idx) in item.keeping_services" :key="idx" small>
                     {{ subService }}
                   </v-chip>
                 </v-chip-group>
               </td>
               <td>
                 <v-chip-group>
-                  <v-chip v-for="(subService, index) in item.lending_services" :key="index" small>
+                  <v-chip v-for="(subService, idx) in item.lending_services" :key="idx" small>
                     {{ subService }}
                   </v-chip>
                 </v-chip-group>
@@ -49,22 +49,22 @@
                   {{ item.change_status ? 'Changed' : '' }}
                 </v-chip>
               </td>
+              <!-- initial_verification -->
               <td v-if="isManager">
-                <v-chip :color="item.initial_verification ? 'yellow' : ''">
-                  {{ item.initial_verification ? 'Initial Check' : '' }}
+                <v-chip :color="verifications[index].initial_verification ? 'yellow' : ''">
+                  {{ verifications[index].initial_verification ? 'Initial Check' : '' }}
                 </v-chip>
               </td>
+              <!-- final_verification -->
               <td v-if="isManager">
-                <v-chip :color="item.final_verification ? 'red' : ''">
-                  {{ item.final_verification ? 'Final Check' : '' }}
+                <v-chip :color="verifications[index].final_verification ? 'red' : ''">
+                  {{ verifications[index].final_verification ? 'Final Check' : '' }}
                 </v-chip>
               </td>
-              <td v-if="!isManager">
-                <v-btn color="primary" @click="updateReservation(item)">예약 변경</v-btn>
-              </td>
+              <!-- action buttons -->
               <td v-if="isManager">
-                <v-btn color="primary" @click="performAction1(item)">Action 1</v-btn>
-                <v-btn color="secondary" @click="performAction2(item)">Action 2</v-btn>
+                <v-btn small color="primary" @click="performAction1(item, index)">Action 1</v-btn>
+                <v-btn small color="secondary" @click="performAction2(item, index)">Action 2</v-btn>
               </td>
             </tr>
           </template>
@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import axios from 'axios';
 
 export default {
@@ -84,8 +85,14 @@ export default {
       name: '',
       phone: '',
       showReservationList: false,
-      isManager: false, // 추가
-      headers: [
+      isManager: false,
+      reservations: [],
+      verifications: [],
+    };
+  },
+  computed: {
+    tableHeaders() {
+      let baseHeaders = [
         { text: '이름', value: 'name' },
         { text: '전화번호', value: 'phone_number' },
         { text: '맡긴 서비스', value: 'keeping_services' },
@@ -93,12 +100,19 @@ export default {
         { text: '예약 날짜', value: 'start_date' },
         { text: '만료 날짜', value: 'end_date' },
         { text: '총 가격', value: 'total_price' },
-        { text: '변경 상태', value: 'change_status', align: 'center', sortable: false }, // 추가
-        { text: '초기 확인', value: 'initial_verification', align: 'center', sortable: false }, // 추가
-        { text: '최종 확인', value: 'final_verification', align: 'center', sortable: false }, // 추가
-      ],
-      reservations: [],
-    };
+        { text: '변경 상태', value: 'change_status', align: 'center', sortable: false },
+      ];
+
+      if (this.isManager) {
+        baseHeaders.push(
+          { text: '초기 확인', value: 'initial_verification', align: 'center', sortable: false },
+          { text: '최종 확인', value: 'final_verification', align: 'center', sortable: false },
+          { text: 'Actions', value: 'action_buttons', align: 'center', sortable: false },
+        );
+      }
+
+      return baseHeaders;
+    },
   },
   methods: {
     async checkReservation() {
@@ -111,20 +125,40 @@ export default {
             },
           });
 
-          console.log(("response data is : ", response.data))
+          console.log("response data is : ", response.data);
 
-          let responseData = response.data;
+          let responseData = response.data.response_data;
 
           if (!Array.isArray(responseData)) {
             responseData = [responseData];
           }
 
-          if (response.data.length === 0) {
+          if (responseData.length === 0) {
             alert('예약 내역이 없습니다.');
             this.showReservationList = false;
           } else {
-            this.reservations = responseData;
-            this.isManager = responseData.some(reservation => 'change_status' in reservation);
+            if (!response.data.is_manager) {
+              // isManager = false인 경우, id가 가장 큰 항목만 필터링
+              const maxIdItem = responseData.reduce((prev, current) => (prev.id > current.id) ? prev : current);
+              responseData = [maxIdItem];
+            }
+
+            // reservations로 관리할 데이터 추출
+            this.reservations = responseData.map(item => {
+              const { initial_verification, final_verification, ...reservationData } = item;
+              return reservationData;
+            });
+
+            // verifications로 관리할 데이터 추출
+            this.verifications = responseData.map(item => ({
+              initial_verification: item.initial_verification,
+              final_verification: item.final_verification
+            }));
+
+            console.log("RESERVATIONS : ", this.reservations);
+            console.log("VERIFICATIONS : ", this.verifications);
+
+            this.isManager = response.data.is_manager;
             this.showReservationList = true;
           }
         } catch (error) {
@@ -135,11 +169,19 @@ export default {
         this.$refs.form.validate();
       }
     },
-    async performAction1(item) {
+
+    async performAction1(item, index) {
       try {
         const response = await axios.post(`http://localhost:8000/api/update-initial-verification/${item.id}/`);
         console.log('Action 1 response:', response.data);
-        this.$set(item, 'initial_verification', true); // 업데이트 후 상태 반영
+
+        Vue.set(this.verifications, index, {
+          ...this.verifications[index],
+          initial_verification: true,
+        });
+
+        console.log("action button resonse : ", this.verifications[index])
+
         alert('Initial verification updated successfully.');
       } catch (error) {
         console.error('Error updating initial verification:', error);
@@ -147,11 +189,18 @@ export default {
       }
     },
 
-    async performAction2(item) {
+    async performAction2(item, index) {
       try {
         const response = await axios.post(`http://localhost:8000/api/update-final-verification/${item.id}/`);
         console.log('Action 2 response:', response.data);
-        this.$set(item, 'final_verification', true); // 업데이트 후 상태 반영
+
+        Vue.set(this.verifications, index, {
+          ...this.verifications[index],
+          final_verification: true,
+        });
+
+        console.log("action button resonse : ", this.verifications[index])
+
         alert('Final verification updated successfully.');
       } catch (error) {
         console.error('Error updating final verification:', error);

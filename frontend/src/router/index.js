@@ -5,7 +5,6 @@ import AppDashboard from '../pages/AppDashboard.vue';
 import ServiceInfo from '../components/ServiceInfo.vue';
 import ReservationPage from '../components/Reservation.vue';
 import ReservationCheckPage from '../components/ReservationCheck.vue';
-import ReservationUpdatePage from '../components/ReservationUpdate.vue';
 import FaqPage from '../components/FaqPage.vue';
 
 Vue.use(Router);
@@ -36,12 +35,6 @@ export default new Router({
           path: 'reservcheck',
           name: 'ReservationCheck',
           component: ReservationCheckPage,
-        },
-        {
-          path: 'reservupdate/:user_id',
-          name: 'ReservationUpdate',
-          component: ReservationUpdatePage,
-          props: true,
         },
         {
           path: 'faqs',

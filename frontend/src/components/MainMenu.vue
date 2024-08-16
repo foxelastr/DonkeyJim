@@ -1,4 +1,3 @@
-<!-- src/components/MainMenu.vue -->
 <template>
     <div>
         <v-app-bar app clipped-left color="indigo" dark>
@@ -6,21 +5,17 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn text :to="{ name: 'Home' }">Home</v-btn>
-            <v-btn text href="/dashboard/serviceinfo">서비스안내</v-btn>
-            <v-btn text href="/dashboard/reservation">예약하기</v-btn>
-            <v-btn text href="/dashboard/reservcheck">예약확인</v-btn>
-            <v-btn text href="/dashboard/faqs">FAQ</v-btn>
+            <v-btn text :to="{ name: 'Home' }" exact active-class="active-button">Home</v-btn>
+
+            <v-btn text :to="{ name: 'ServiceInfo' }" exact active-class="active-button">서비스안내</v-btn>
+
+            <v-btn text :to="{ name: 'Reservation' }" exact active-class="active-button">예약하기</v-btn>
+
+            <v-btn text :to="{ name: 'ReservationCheck' }" exact active-class="active-button">예약확인</v-btn>
+
+            <v-btn text :to="{ name: 'Faqs' }" exact active-class="active-button">FAQ</v-btn>
+
             <v-btn text href="/admin/">Admin</v-btn>
-            <v-btn text>/</v-btn>
-            <v-btn text href="/dashboard.html">서비스안내</v-btn>
-            <v-btn text href="/dashboard.html">예약하기</v-btn>
-            <v-btn text href="/dashboard.html">예약확인</v-btn>
-            <v-btn text href="/dashboard.html">FAQ</v-btn>
-            <!-- <v-btn text :to="{ name: 'ServiceInfo' }">서비스안내</v-btn>
-            <v-btn text :to="{ name: 'Reservation' }">예약하기</v-btn>
-            <v-btn text :to="{ name: 'ReservationCheck' }">예약확인</v-btn>
-            <v-btn text :to="{ name: 'Faq' }">FAQ</v-btn> -->
 
             <v-spacer></v-spacer>
         </v-app-bar>
@@ -28,9 +23,12 @@
 </template>
 
 <script>
-export default {
-    data: () => ({}),
-}
+export default {};
 </script>
 
-<style></style>
+<style scoped>
+.active-button {
+    color: white;
+    font-weight: bold;
+}
+</style>
