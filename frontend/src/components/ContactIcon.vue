@@ -22,7 +22,7 @@
                     class="v-btn--bottom v-btn--fab v-btn--fixed v-btn--has-bg v-btn--right v-btn--round theme--light v-size--large primary"
                     aria-label="Contact" title="Contact" v-bind="attrs" v-on="on">
                     <span class="v-btn__content">
-                        <v-icon>mdi-phone</v-icon>
+                        <img :src="kakaoIcon" alt="Kakao Icon" style="width: 64px; height: 64px;">
                     </span>
                 </v-btn>
             </template>
@@ -60,6 +60,7 @@ export default {
     data() {
         return {
             showPaymentMethod: false,
+            kakaoIcon: require('@/assets/kakao_icon.png'),
         };
     }
 };
@@ -78,11 +79,6 @@ export default {
     /* 기존 버튼 위에 추가 버튼을 배치하기 위한 간격 */
     background-color: #ffcc00;
     /* 버튼 색상 변경 (선택 사항) */
-}
-
-.primary {
-    background-color: #6200ea;
-    /* 기존 버튼 색상 유지 */
 }
 
 .payment-method {

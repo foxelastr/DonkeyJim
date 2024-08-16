@@ -15,15 +15,19 @@
         </v-carousel>
       </v-col>
     </v-row>
+
     <v-row align="center" justify="space-around">
-      <v-col cols="6" class="text-center right-border" @click="selectService('Keeping')">
+      <v-col cols="6" class="text-center" :class="{ selected: currentService === 'Keeping' }"
+        @click="selectService('Keeping')">
         <div class="serviceType">
           <v-btn x-large text>
             맡기기
           </v-btn>
         </div>
       </v-col>
-      <v-col cols="6" class="text-center" @click="selectService('Lending')">
+
+      <v-col cols="6" class="text-center" :class="{ selected: currentService === 'Lending' }"
+        @click="selectService('Lending')">
         <div class="serviceType">
           <v-btn x-large text>
             빌리기
@@ -34,19 +38,14 @@
 
     <v-row class="mb-5">
       <v-col v-for="(card, index) in selectedCards" :key="index" cols="12" sm="4">
-        <v-card class="mx-auto" max-width="400" @click="openDialog(index + 1)">
+        <v-card class="mx-auto" max-width="400" @click="openDialog(index)">
           <v-img class="white--text align-end" height="200px" :src="card.image">
             <v-card-title>{{ card.name }}</v-card-title>
           </v-img>
 
           <v-card-subtitle class="pb-0">
-            {{ card.base_price }} / {{ card.additional_price }}
+            기본 {{ card.base_price }}원 / 추가 {{ card.additional_price }}원
           </v-card-subtitle>
-
-          <v-card-text class="text--primary">
-            <div>{{ card.description }}</div>
-          </v-card-text>
-
         </v-card>
       </v-col>
     </v-row>
@@ -54,16 +53,20 @@
     <v-dialog v-model="dialog" max-width="500px">
       <v-card>
         <v-card-title class="text-h5 grey lighten-2">
-          Card {{ selectedCard }} Information
+          {{ selectedCardData.name }} 제품 정보
+          <v-spacer></v-spacer>
+          <v-btn icon @click="dialog = false">
+            <v-icon>mdi-close</v-icon>
+          </v-btn>
         </v-card-title>
         <v-card-text>
-          This is the content of card {{ selectedCard }}.
+          <v-card-text v-html="formattedDescription"></v-card-text>
         </v-card-text>
         <v-divider></v-divider>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="primary" text @click="dialog = false">
-            I accept
+          <v-btn color="primary" text @click="goToReservationPage">
+            예약하러 가기
           </v-btn>
         </v-card-actions>
       </v-card>
@@ -97,23 +100,25 @@ export default {
   computed: {
     selectedCards() {
       return this.currentService === 'Keeping' ? this.KeepingCards : this.LendingCards;
+    },
+    selectedCardData() {
+      if (this.selectedCard !== null) {
+        return this.selectedCards[this.selectedCard];
+      }
+      return {};  // 선택된 카드가 없을 때 빈 객체 반환
+    },
+    formattedDescription() {
+      // \n 문자를 <br>로 변환하여 HTML 형식으로 반환
+      return this.selectedCardData.description ? this.selectedCardData.description.replace(/\n/g, '<br>') : '';
     }
   },
-
   created() {
     this.fetchItemsList();
   },
-
   methods: {
     fetchItemsList() {
-      console.log("fetchItemsList()...");
-
       axios.get('http://localhost:8000/api/dashboard/')
-        // axios.get('/api/dashboard/')
         .then(res => {
-          console.log("POST GET RES", res);
-
-          // 데이터를 받아와서 KeepingCards와 LendingCards에 저장
           this.KeepingCards = res.data.keeping_services.map(service => ({
             image: '',  // 이미지 데이터가 없으므로 빈 문자열로 유지
             name: service.name,
@@ -132,7 +137,6 @@ export default {
         })
         .catch(err => {
           if (err.response) {
-            console.log("POST GET ERR.RESPONSE", err.response);
             alert(err.response.status + ' ' + err.response.statusText);
           } else {
             console.error("Error", err.message);
@@ -143,14 +147,15 @@ export default {
           this.loading = false;
         });
     },
-
     selectService(serviceType) {
       this.currentService = serviceType;
     },
-
-    openDialog(cardNumber) {
-      this.selectedCard = cardNumber;
+    openDialog(cardIndex) {
+      this.selectedCard = cardIndex;
       this.dialog = true;
+    },
+    goToReservationPage() {
+      this.$router.push({ name: 'Reservation' });
     }
   }
 };
@@ -163,5 +168,9 @@ export default {
 
 .right-border {
   border-right: 1px solid #000;
+}
+
+.selected {
+  background-color: #CFD8DC;
 }
 </style>
