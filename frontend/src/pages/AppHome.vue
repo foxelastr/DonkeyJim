@@ -3,13 +3,15 @@
     <v-main class="custom-main">
       <router-view></router-view>
     </v-main>
+    <FooterBar />
   </v-app>
 </template>
 
 <script>
-// import MainMenu from "../components/MainMenu.vue";
+import FooterBar from "../components/FooterBar.vue";
 
 export default {
+  components: { FooterBar }
 };
 </script>
 
