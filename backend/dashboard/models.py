@@ -5,16 +5,23 @@ class KeepingService(models.Model):
     description = models.TextField('DESCRIPTION', blank=True, help_text='simple description text.')
     base_price = models.IntegerField('BASE PRICE')
     additional_price = models.IntegerField('ADDITIONAL PRICE')
+    main_image = models.ImageField(upload_to='images/keeping_services/main/', blank=True, help_text='Upload the main image for the service.')
+    detail_image = models.ImageField(upload_to='images/keeping_services/detail/', blank=True, help_text='Upload the detail image for the service.')
+
     create_dt = models.DateTimeField('CREATE DATE', auto_now_add=True)
 
     def __str__(self):
         return self.name
+
 
 class LendingService(models.Model):
     name = models.CharField(verbose_name='NAME', max_length=100, default='default_name')
     description = models.TextField('DESCRIPTION', blank=True, help_text='simple description text.')
     base_price = models.IntegerField('BASE PRICE')
     additional_price = models.IntegerField('ADDITIONAL PRICE')
+    main_image = models.ImageField(upload_to='images/lending_services/main/', blank=True, help_text='Upload the main image for the service.')
+    detail_image = models.ImageField(upload_to='images/lending_services/detail/', blank=True, help_text='Upload the detail image for the service.')
+
     create_dt = models.DateTimeField('CREATE DATE', auto_now_add=True)
 
     def __str__(self):

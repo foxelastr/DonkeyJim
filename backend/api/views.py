@@ -22,8 +22,8 @@ class ApiItemsLV(BaseListView):
         self.object_list = self.get_queryset()
         allow_empty = self.get_allow_empty()
 
-        keeping_services = list(KeepingService.objects.values('name', 'description', 'base_price', 'additional_price', 'create_dt'))
-        lending_services = list(LendingService.objects.values('name', 'description', 'base_price', 'additional_price', 'create_dt'))
+        keeping_services = list(KeepingService.objects.values('name', 'description', 'base_price', 'additional_price', 'main_image', 'detail_image', 'create_dt'))
+        lending_services = list(LendingService.objects.values('name', 'description', 'base_price', 'additional_price', 'main_image', 'detail_image', 'create_dt'))
 
         if not allow_empty and not (keeping_services or lending_services):
             raise Http404(

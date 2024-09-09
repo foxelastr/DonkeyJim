@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-col>
-      <v-card class="mb-10 mx-auto" max-width="1590">
+      <v-card class="mb-7 mx-auto" max-width="1590">
         <v-img class="white--text align-start" max-height="500px" :src="daemoonIcon">
           <v-card-title>
             <v-img max-width="120px" :src="LOGOIcon"></v-img>
@@ -24,10 +24,10 @@
       <v-divider class="mx-auto" style="max-width: 1590px;"></v-divider>
     </v-col>
 
-    <v-row class="pt-5">
+    <v-row class="pt-3">
       <v-col v-for="(card, index) in cards" :key="index" cols="12" md="4">
         <v-card class="mx-auto" max-width="400" @click="navigateTo(card.link)">
-          <v-img :src="card.image" max-height="300px"></v-img>
+          <v-img :src="card.image" max-height="400px"></v-img>
           <v-card-title>
             <router-link :to="card.link" style="color: black; text-decoration: none;">{{ card.title }}</router-link>
           </v-card-title>
@@ -46,19 +46,19 @@ export default {
     return {
       cards: [
         {
-          image: '',
+          image: require('@/assets/service_guide.png'),
           title: '서비스 안내',
           subtitle: '에어라커의 전반적인 서비스 내용을 확인하세요!',
           link: { name: 'ServiceInfo' }
         },
         {
-          image: '',
+          image: require('@/assets/reservation.png'),
           title: '예약하기',
           subtitle: '예약하기를 통해 간편하게 예약하고 이용하세요!',
           link: { name: 'Reservation' }
         },
         {
-          image: '',
+          image: require('@/assets/reserv_check.png'),
           title: '예약확인',
           subtitle: '예약하신 내용을 확인 및 변경하실 수 있습니다!',
           link: { name: 'ReservationCheck' }

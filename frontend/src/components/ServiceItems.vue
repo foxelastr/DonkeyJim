@@ -24,7 +24,7 @@
     <v-row class="mb-5">
       <v-col v-for="(card, index) in selectedCards" :key="index" cols="12" sm="4">
         <v-card class="mx-auto" max-width="400" @click="openDialog(index)">
-          <v-img class="white--text align-end" height="200px" :src="card.image">
+          <v-img class="white--text align-end" height="200px" :src="card.main_image">
             <v-card-title>{{ card.name }}</v-card-title>
           </v-img>
 
@@ -44,10 +44,17 @@
             <v-icon>mdi-close</v-icon>
           </v-btn>
         </v-card-title>
+
         <v-card-text>
+          <!-- 설명 텍스트 -->
           <v-card-text v-html="formattedDescription"></v-card-text>
+
+          <!-- 설명 이미지 추가 -->
+          <v-img class="white--text align-end" height="200px" :src="selectedCardData.detail_image"></v-img>
         </v-card-text>
+
         <v-divider></v-divider>
+
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="primary" text @click="goToReservationPage">
@@ -56,6 +63,7 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
+
   </v-container>
 </template>
 
@@ -118,19 +126,23 @@ export default {
       axios.get('http://localhost:8000/api/dashboard/')
         .then(res => {
           this.KeepingCards = res.data.keeping_services.map(service => ({
-            image: '',  // 이미지 데이터가 없으므로 빈 문자열로 유지
+            main_image: 'http://localhost:8000/media/' + service.main_image,
+            detail_image: 'http://localhost:8000/media/' + service.detail_image,
             name: service.name,
             description: service.description,
             base_price: service.base_price,
-            additional_price: service.additional_price
+            additional_price: service.additional_price,
           }));
 
+          console.log("Keeping Card items is : \n", this.KeepingCards)
+
           this.LendingCards = res.data.lending_services.map(service => ({
-            image: '',  // 이미지 데이터가 없으므로 빈 문자열로 유지
+            main_image: 'http://localhost:8000/media/' + service.main_image,
+            detail_image: 'http://localhost:8000/media/' + service.detail_image,
             name: service.name,
             description: service.description,
             base_price: service.base_price,
-            additional_price: service.additional_price
+            additional_price: service.additional_price,
           }));
         })
         .catch(err => {

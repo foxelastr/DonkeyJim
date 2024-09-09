@@ -5,11 +5,11 @@ from .models import KeepingService, LendingService, Users
 
 @admin.register(KeepingService)
 class KeepingServiceAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description', 'base_price', 'additional_price', 'create_dt']
+    list_display = ['name', 'description', 'base_price', 'additional_price', 'main_image', 'detail_image', 'create_dt']
 
 @admin.register(LendingService)
 class LendingServiceAdmin(admin.ModelAdmin):
-    list_display = ['name', 'description', 'base_price', 'additional_price', 'create_dt']
+    list_display = ['name', 'description', 'base_price', 'additional_price', 'main_image', 'detail_image', 'create_dt']
 
 class UsersAdmin(admin.ModelAdmin):
     list_display = [

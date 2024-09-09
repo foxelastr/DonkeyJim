@@ -44,6 +44,9 @@
               <td>{{ item.start_date }}</td>
               <td>{{ item.end_date }}</td>
               <td>{{ formatPrice(item.total_price) }}</td>
+              <td v-if="!isManager">
+                <v-btn small color="primary" @click="navigateToReservation(item)">변경하기</v-btn>
+              </td>
               <td v-if="isManager">
                 <v-chip :color="item.change_status ? 'blue' : ''">
                   {{ item.change_status ? 'Changed' : '' }}
@@ -100,14 +103,18 @@ export default {
         { text: '예약 날짜', value: 'start_date' },
         { text: '만료 날짜', value: 'end_date' },
         { text: '총 가격', value: 'total_price' },
-        { text: '변경 상태', value: 'change_status', align: 'center', sortable: false },
       ];
 
-      if (this.isManager) {
+      if (!this.isManager) {
         baseHeaders.push(
+          { text: '변경하기', value: 'action_buttons', align: 'center', sortable: false }
+        );
+      } else {
+        baseHeaders.push(
+          { text: '변경 상태', value: 'change_status', align: 'center', sortable: false },
           { text: '초기 확인', value: 'initial_verification', align: 'center', sortable: false },
           { text: '최종 확인', value: 'final_verification', align: 'center', sortable: false },
-          { text: 'Actions', value: 'action_buttons', align: 'center', sortable: false },
+          { text: 'Actions', value: 'action_buttons', align: 'center', sortable: false }
         );
       }
 
@@ -168,6 +175,14 @@ export default {
       } else {
         this.$refs.form.validate();
       }
+    },
+
+    navigateToReservation(item) {
+      // 라우터를 통해 ReservationPage로 이동
+      this.$router.push({
+        name: 'Reservation',
+        params: { id: item.id }
+      });
     },
 
     async performAction1(item, index) {
