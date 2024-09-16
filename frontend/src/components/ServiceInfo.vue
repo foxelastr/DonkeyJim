@@ -5,8 +5,10 @@
       <v-card-title class="headline font-weight-bold">에어라커 서비스 안내</v-card-title>
       <v-card-text>
         <p>
-          고객님의 소중한 짐과 옷을 24시 안전하게 보관합니다.<br>공기청정기와 스타일러(에어드레서)를 사용해 항상 쾌적하고 깨끗한 환경을 유지하며, 고객님의 옷을 최상의 상태로
-          보관합니다.<br>보관/회수 시 모두 에어라커 직원이 고객님께 찾아갑니다.
+          에어라커는 고객님의 편의를 위한 보관 및 대여 서비스를 제공합니다. 보관 서비스는 소중한 옷과 짐을 안전하게 보관하며, 공기청정기, 의류관리기(스타일러), 제습기를 통해 쾌적한 환경에서
+          관리됩니다.<br>
+          대여 서비스는 해외여행 시 필요한 범용 전압의 고데기, 헤어드라이어 등 다양한 필수 아이템을 제공합니다. 두 서비스 모두 에어라커 직원이 공항에서 직접 대응하여, 편리하고 신속한 서비스를 경험하실
+          수 있습니다.
         </p>
         <p>
         <ul>
@@ -32,8 +34,9 @@
           <v-card-text style="border-right: 1px solid #eee">
             <ul class="benefits-list">
               <li><strong>의류관리기(스타일러)</strong>를 사용하여 옷을 무료로 관리해 드립니다.</li>
-              <li><strong>합리적인 가격</strong>으로 부담없이 보관할 수 있습니다.</li>
-              <li><strong>공기청정기</strong>를 사용하여 쾌적한 환경에서 의류를 보관합니다.</li>
+              <li><strong>공기청정기</strong>와 <strong>제습기</strong>를 사용하여 쾌적한 환경에서 의류를 보관합니다.</li>
+              <li>보관소에 직원이 24시간 상주해 안전하게 보관합니다.</li>
+              <li>에어라커 직원이 직접 고객님의 짐을 픽업해드립니다.</li>
             </ul>
           </v-card-text>
         </v-col>
@@ -43,34 +46,9 @@
           <v-card-text>
             <ul class="benefits-list">
               <li>다양한 <strong>여행 필수 아이템</strong>으로 편리한 여행을 지원합니다.</li>
-              <li><strong>합리적인 가격</strong>으로 부담없이 대여할 수 있습니다.</li>
               <li><strong>고품질 아이템</strong>으로 쾌적한 여행을 즐기실 수 있습니다.</li>
-            </ul>
-          </v-card-text>
-        </v-col>
-      </v-row>
-    </v-card>
-
-    <!-- 맡기기 / 빌리기 개별 안내 섹션 -->
-    <v-card class="mx-auto mb-5" outlined>
-      <v-row>
-        <v-col cols="12" md="6">
-          <v-card-title class="font-weight-bold" color="blue lighten-1" style="border-right: 1px solid #eee">보관 서비스
-            안내</v-card-title>
-          <v-card-text style="border-right: 1px solid #eee">
-            <ul class="benefits-list">
-              <li>고객님의 소중한 짐과 옷을 24시간 안전하게 보관합니다.</li>
-              <li>보관/회수 시 모두 에어라커 직원이 고객님께 찾아갑니다.</li>
-            </ul>
-          </v-card-text>
-        </v-col>
-
-        <v-col cols="12" md="6">
-          <v-card-title class="font-weight-bold" color="green lighten-1">대여 서비스 안내</v-card-title>
-          <v-card-text>
-            <ul class="benefits-list">
-              <li>여행시 필요한 다양한 아이템이 구비되어 있습니다.</li>
-              <li>대여/반납 시 모두 에어라커 직원이 고객님께 찾아갑니다.</li>
+              <li><strong>전자기기 전문 직원</strong>이 회수 시마다 <strong>점검</strong>하여 안전하게 사용가능합니다.</li>
+              <li>에어라커 직원이 직접 고객님께 물품을 전달해드립니다.</li>
             </ul>
           </v-card-text>
         </v-col>

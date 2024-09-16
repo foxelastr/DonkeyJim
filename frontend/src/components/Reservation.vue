@@ -6,8 +6,8 @@
       <v-card>
         <v-card-title class="headline">알림</v-card-title>
         <v-card-text>
-          <div>에어라커 서비스는 11월 1일부터 정식으로 시작됩니다.</div>
-          <div>현재 서비스 예약은 가능하나, 11월 1일부터 이용하실 수 있습니다.</div>
+          <div>에어라커 서비스는 12월 1일부터 정식으로 시작됩니다.</div>
+          <div>현재 서비스 예약은 가능하나, 12월 1일부터 이용하실 수 있습니다.</div>
           <div>확인 버튼을 누르시면 서비스 예약을 하실 수 있습니다.</div>
         </v-card-text>
         <v-card-actions>
@@ -470,7 +470,7 @@ export default {
     },
     allowedDates(date) {
       // 10월 30일 이전 날짜를 비활성화
-      const targetDate = new Date('2024-10-31');
+      const targetDate = new Date('2024-11-30');
       const currentDate = new Date(date);
 
       return currentDate > targetDate;
