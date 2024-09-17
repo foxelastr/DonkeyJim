@@ -24,6 +24,7 @@ module.exports = {
   outputDir: 'dist',
   publicPath: '/',
   assetsDir: 'static',
+  filenameHashing: true,
 
   pages: {
     index: {
@@ -59,6 +60,8 @@ module.exports = {
             copy: [
               { source: path.resolve(__dirname, './dist/static/css'), destination: path.resolve(__dirname, '../backend/static/css') },
               { source: path.resolve(__dirname, './dist/static/js'), destination: path.resolve(__dirname, '../backend/static/js') },
+	              { source: './src/assets/img', destination: './dist/static/img' },
+
               { source: path.resolve(__dirname, './dist/daemoon.png'), destination: path.resolve(__dirname, '../backend/static/img/daemoon.png') },
               { source: path.resolve(__dirname, './dist/LOGO.png'), destination: path.resolve(__dirname, '../backend/static/img/LOGO.png') },
               { source: path.resolve(__dirname, './dist/home.html'), destination: path.resolve(__dirname, '../backend/templates/home.html') },

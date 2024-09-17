@@ -125,7 +125,7 @@ export default {
     async checkReservation() {
       if (this.name && this.phone) {
         try {
-          const response = await axios.get('http://localhost:8000/api/reservcheck/', {
+          const response = await axios.get('http://airlocker.biz/api/reservcheck/', {
             params: {
               name: this.name,
               phone_number: this.phone,
@@ -187,7 +187,7 @@ export default {
 
     async performAction1(item, index) {
       try {
-        const response = await axios.post(`http://localhost:8000/api/update-initial-verification/${item.id}/`);
+        const response = await axios.post(`http://airlocker.biz/api/update-initial-verification/${item.id}/`);
         console.log('Action 1 response:', response.data);
 
         Vue.set(this.verifications, index, {
@@ -206,7 +206,7 @@ export default {
 
     async performAction2(item, index) {
       try {
-        const response = await axios.post(`http://localhost:8000/api/update-final-verification/${item.id}/`);
+        const response = await axios.post(`http://airlocker.biz/api/update-final-verification/${item.id}/`);
         console.log('Action 2 response:', response.data);
 
         Vue.set(this.verifications, index, {
