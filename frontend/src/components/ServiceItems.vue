@@ -6,7 +6,7 @@
         @click="selectService('Keeping')">
         <div class="serviceType">
           <v-btn x-large text>
-            맡기기
+            보관
           </v-btn>
         </div>
       </v-col>
@@ -15,7 +15,7 @@
         @click="selectService('Lending')">
         <div class="serviceType">
           <v-btn x-large text>
-            빌리기
+            대여
           </v-btn>
         </div>
       </v-col>
@@ -24,7 +24,7 @@
     <v-row class="mb-5">
       <v-col v-for="(card, index) in selectedCards" :key="index" cols="12" sm="4">
         <v-card class="mx-auto" max-width="400" @click="openDialog(index)">
-          <v-img class="white--text align-end" height="300px" :src="card.main_image" aspect-ratio="1" contain
+          <v-img class="black--text align-end" height="300px" :src="card.main_image" aspect-ratio="1" contain
             style="object-fit: cover;">
             <v-card-title>{{ card.name }}</v-card-title>
           </v-img>
@@ -52,8 +52,8 @@
           <v-card-text v-html="formattedDescription"></v-card-text>
 
           <!-- 설명 이미지 추가 -->
-          <v-img :src="selectedCardData.detail_image" max-width="100%"
-            style="max-height: 100%; object-fit: contain; margin: auto;" class="mt-3"></v-img>
+          <v-img :src="selectedCardData.detail_image"
+            style="width:100%; height: auto; object-fit: contain; display: block; margin: auto;" class="mt-3"></v-img>
         </v-card-text>
 
         <v-divider></v-divider>

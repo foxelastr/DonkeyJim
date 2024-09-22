@@ -8,8 +8,8 @@
           </v-card-title>
         </v-img>
         <v-card-subtitle class="text--primary">
-          <div class="daemoon_text">무거운 짐과 옷은 맡기고~</div>
-          <div class="daemoon_text">깜빡한 물건은 빌리고~</div>
+          <div class="daemoon_text">무거운 짐과 옷은 맡기고!</div>
+          <div class="daemoon_text">깜빡한 물건은 빌리고!</div>
           <div class="daemoon_text">
           </div>
         </v-card-subtitle>

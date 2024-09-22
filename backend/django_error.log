@@ -1442,3 +1442,33 @@ Traceback (most recent call last):
   File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
     raise DisallowedHost(msg)
 django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Internal Server Error: /dashboard/serviceitems/
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: dashboard/dashboard.html
+Internal Server Error: /
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/base.py", line 220, in _get_response
+    response = response.render()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/template/response.py", line 114, in render
+    self.content = self.rendered_content
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/template/response.py", line 90, in rendered_content
+    template = self.resolve_template(self.template_name)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/template/response.py", line 72, in resolve_template
+    return select_template(template, using=self.using)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/template/loader.py", line 47, in select_template
+    raise TemplateDoesNotExist(", ".join(template_name_list), chain=chain)
+django.template.exceptions.TemplateDoesNotExist: home.html

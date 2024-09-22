@@ -9,7 +9,7 @@
         <v-expansion-panel-content>
           <span class="answer" v-html="item.contentHtml"></span>{{ item.contentText }}
           <br>
-          <v-btn v-if="item.buttonText" :to="{ name: 'ServiceInfo' }">{{ item.buttonText }}</v-btn>
+          <v-btn v-if="item.buttonText" :to="{ name: 'ServiceItems' }">{{ item.buttonText }}</v-btn>
         </v-expansion-panel-content>
       </v-expansion-panel>
     </v-expansion-panels>
@@ -40,7 +40,7 @@ export default {
           headerHtml: '<span class="question">Q</span>',
           headerText: ' 영업 시간은 어떻게 되나요?',
           contentHtml: '<span class="answer">A</span>',
-          contentText: ' 현재 영업시간은 06:00부터 00:00까지이며, 그 외 시간에는 이용이 불가능합니다.',
+          contentText: ' 현재 영업시간은 06:00부터 23:00까지이며, 그 외 시간에는 이용이 불가능합니다.',
           buttonText: null
         },
         {
@@ -149,3 +149,4 @@ export default {
   flex: none !important;
 }
 </style>
+

@@ -44,6 +44,8 @@
               <td>{{ item.start_date }}</td>
               <td>{{ item.end_date }}</td>
               <td>{{ formatPrice(item.total_price) }}</td>
+	      <td>{{ item.payment_method }}</td>
+
               <td v-if="!isManager">
                 <v-btn small color="primary" @click="navigateToReservation(item)">변경하기</v-btn>
               </td>
@@ -103,6 +105,7 @@ export default {
         { text: '예약 날짜', value: 'start_date' },
         { text: '만료 날짜', value: 'end_date' },
         { text: '총 가격', value: 'total_price' },
+        { text: '결제 방법', value: 'payment_method' }, 
       ];
 
       if (!this.isManager) {
