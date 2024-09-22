@@ -5,7 +5,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['airlocker.biz', 'www.airlocker.biz', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['airlocker.biz', 'www.airlocker.biz', '127.0.0.1', 'localhost', '3.37.113.236']
 
 # Database
 DATABASES = {

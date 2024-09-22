@@ -16,8 +16,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 # DEBUG = True
 
 # ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['airlocker.biz', 'www.airlocker.biz', '3.37.113.236']
 
 CORS_ALLOWED_ORIGINS = [
+    "https://airlocker.biz",
     "http://localhost:8081",  # Vue 개발 서버 주소
     "http://127.0.0.1:8081",  # Django 서버 주소
     "http://localhost:8000",  # Vue 개발 서버 주소
@@ -25,11 +27,16 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CSRF_TRUSTED_ORIGINS = [
+    "https://airlocker.biz",
     "http://localhost:8081",  # Vue 개발 서버 주소
     "http://127.0.0.1:8081",  # Django 서버 주소
     "http://localhost:8000",  # Vue 개발 서버 주소
     "http://127.0.0.1:8000",  # Django 서버 주소
 ]
+
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_SECURE = True  # HTTPS를 사용하는 경우 True로 설정
+SESSION_COOKIE_SECURE = True  # HTTPS를 사용하는 경우 True로 설정
 
 # CORS 헤더를 Vue 개발 서버에서 허용
 CORS_ALLOW_CREDENTIALS = True
@@ -158,3 +165,22 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'django_error.log'),  # 적절한 로그 파일 경로 설정
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+    },
+}

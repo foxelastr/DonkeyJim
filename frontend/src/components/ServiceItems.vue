@@ -128,11 +128,11 @@ export default {
       return images[index - 1];
     },
     fetchItemsList() {
-      axios.get('http://airlocker.biz/api/dashboard/')
+      axios.get('https://airlocker.biz/api/dashboard/')
         .then(res => {
           this.KeepingCards = res.data.keeping_services.map(service => ({
-            main_image: 'http://airlocker.biz/media/' + service.main_image,
-            detail_image: 'http://airlocker.biz/media/' + service.detail_image,
+            main_image: 'https://airlocker.biz/media/' + service.main_image,
+            detail_image: 'https://airlocker.biz/media/' + service.detail_image,
             name: service.name,
             description: service.description,
             base_price: service.base_price,
@@ -142,8 +142,8 @@ export default {
           console.log("Keeping Card items is : \n", this.KeepingCards)
 
           this.LendingCards = res.data.lending_services.map(service => ({
-            main_image: 'http://airlocker.biz/media/' + service.main_image,
-            detail_image: 'http://airlocker.biz/media/' + service.detail_image,
+            main_image: 'https://airlocker.biz/media/' + service.main_image,
+            detail_image: 'https://airlocker.biz/media/' + service.detail_image,
             name: service.name,
             description: service.description,
             base_price: service.base_price,

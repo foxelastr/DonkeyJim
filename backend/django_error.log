@@ -1,0 +1,1444 @@
+Internal Server Error: /hanbae/dashboard/lendingservice/2/change/
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/contrib/admin/options.py", line 688, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/views/decorators/cache.py", line 62, in _wrapper_view_func
+    response = view_func(request, *args, **kwargs)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/contrib/admin/sites.py", line 242, in inner
+    return view(request, *args, **kwargs)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/contrib/admin/options.py", line 1889, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/decorators.py", line 46, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/decorators.py", line 134, in _wrapper_view
+    response = view_func(request, *args, **kwargs)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/contrib/admin/options.py", line 1747, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/contrib/admin/options.py", line 1798, in _changeform_view
+    self.save_model(request, new_object, form, not add)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/contrib/admin/options.py", line 1227, in save_model
+    obj.save()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/db/models/base.py", line 814, in save
+    self.save_base(
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/db/models/base.py", line 877, in save_base
+    updated = self._save_table(
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/db/models/base.py", line 981, in _save_table
+    values = [
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/db/models/base.py", line 985, in <listcomp>
+    (getattr(self, f.attname) if raw else f.pre_save(self, False)),
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/db/models/fields/files.py", line 317, in pre_save
+    file.save(file.name, file.file, save=False)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/db/models/fields/files.py", line 93, in save
+    self.name = self.storage.save(name, content, max_length=self.field.max_length)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/files/storage/base.py", line 49, in save
+    name = self._save(name, content)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/files/storage/filesystem.py", line 87, in _save
+    os.makedirs(directory, exist_ok=True)
+  File "/usr/lib64/python3.9/os.py", line 215, in makedirs
+    makedirs(head, exist_ok=exist_ok)
+  File "/usr/lib64/python3.9/os.py", line 225, in makedirs
+    mkdir(name, mode)
+PermissionError: [Errno 13] Permission denied: '/home/ec2-user/DonkeyJim/backend/media/images/lending_services'
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/utils/deprecation.py", line 133, in __call__
+    response = self.process_request(request)
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/middleware/common.py", line 48, in process_request
+    host = request.get_host()
+  File "/home/ec2-user/DonkeyJim/donkeyjimVENV/lib64/python3.9/site-packages/django/http/request.py", line 150, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: '3.37.113.236'. You may need to add '3.37.113.236' to ALLOWED_HOSTS.

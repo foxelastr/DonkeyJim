@@ -425,7 +425,7 @@ export default {
     },
   },
   created() {
-    axios.get('http://airlocker.biz/api/items/')
+    axios.get('https://airlocker.biz/api/items/')
       .then(response => {
         this.depositServices = response.data.keeping_services;
         this.rentServices = response.data.lending_services;
@@ -609,7 +609,7 @@ export default {
       // 폼 데이터 콘솔에 출력
       console.log('Reservation Data:', reservationData);
 
-      axios.post('http://airlocker.biz/api/reservation/', reservationData)
+      axios.post('https://airlocker.biz/api/reservation/', reservationData)
         .then(response => {
           alert('예약이 완료되었습니다!');
           console.log('API Response:', response);
