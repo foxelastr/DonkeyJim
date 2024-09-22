@@ -1,2 +1,29 @@
+.DS_Store
+frontend/node_modules
+frontend/dist
+
 donkeyjimVENV/
+
+backend/static
+
 Donkey_Jim.pem
+
+# local env files for frontend
+frontend/.env.local
+frontend/.env.*.local
+
+# Log files in frontend
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+
+# Editor directories and files in frontend
+frontend/.idea
+frontend/.vscode
+frontend/*.suo
+frontend/*.ntvs*
+frontend/*.njsproj
+frontend/*.sln
+frontend/*.sw?
+
